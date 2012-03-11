@@ -1,0 +1,3507 @@
+From 54758112541e73544bb7d828c0b3a005a643522c Mon Sep 17 00:00:00 2001
+From: Dennis <dennis6981@yahoo.de>
+Date: Sun, 11 Mar 2012 16:30:52 +0100
+Subject: [PATCH] New Files Added
+
+---
+ .classpath                                         |    6 +
+ .../MinecraftLauncherJarBuilder.launch             |   19 +
+ .../MinecraftLauncherJarBuilder.launch~            |   19 +
+ .project                                           |   27 +
+ .settings/org.eclipse.jdt.core.prefs               |   12 +
+ build-jar.xml                                      |   10 +
+ minecraft.mf                                       |    2 +
+ src/LZMA/CRangeDecoder.java                        |  164 ++++
+ src/LZMA/LzmaException.java                        |   14 +
+ src/LZMA/LzmaInputStream.java                      |  327 ++++++++
+ src/net/minecraft/GameUpdater.java                 |  809 ++++++++++++++++++++
+ src/net/minecraft/Launcher.java                    |  294 +++++++
+ src/net/minecraft/LauncherFrame.java               |  182 +++++
+ src/net/minecraft/LoginForm.java                   |  526 +++++++++++++
+ src/net/minecraft/LogoPanel.java                   |   38 +
+ src/net/minecraft/MinecraftLauncher.java           |   39 +
+ src/net/minecraft/OptionsPanel.java                |  116 +++
+ src/net/minecraft/TexturedPanel.java               |   59 ++
+ src/net/minecraft/TransparentButton.java           |   17 +
+ src/net/minecraft/TransparentCheckbox.java         |   20 +
+ src/net/minecraft/TransparentLabel.java            |   24 +
+ src/net/minecraft/TransparentPanel.java            |   33 +
+ src/net/minecraft/Util.java                        |  156 ++++
+ src/net/minecraft/dirt.png                         |  Bin 0 -> 360 bytes
+ src/net/minecraft/favicon.png                      |  Bin 0 -> 1374 bytes
+ src/net/minecraft/logo.png                         |  Bin 0 -> 16571 bytes
+ 26 files changed, 2913 insertions(+), 0 deletions(-)
+ create mode 100644 .classpath
+ create mode 100644 .externalToolBuilders/MinecraftLauncherJarBuilder.launch
+ create mode 100644 .externalToolBuilders/MinecraftLauncherJarBuilder.launch~
+ create mode 100644 .project
+ create mode 100644 .settings/org.eclipse.jdt.core.prefs
+ create mode 100644 build-jar.xml
+ create mode 100644 minecraft.mf
+ create mode 100644 src/LZMA/CRangeDecoder.java
+ create mode 100644 src/LZMA/LzmaException.java
+ create mode 100644 src/LZMA/LzmaInputStream.java
+ create mode 100644 src/net/minecraft/GameUpdater.java
+ create mode 100644 src/net/minecraft/Launcher.java
+ create mode 100644 src/net/minecraft/LauncherFrame.java
+ create mode 100644 src/net/minecraft/LoginForm.java
+ create mode 100644 src/net/minecraft/LogoPanel.java
+ create mode 100644 src/net/minecraft/MinecraftLauncher.java
+ create mode 100644 src/net/minecraft/OptionsPanel.java
+ create mode 100644 src/net/minecraft/TexturedPanel.java
+ create mode 100644 src/net/minecraft/TransparentButton.java
+ create mode 100644 src/net/minecraft/TransparentCheckbox.java
+ create mode 100644 src/net/minecraft/TransparentLabel.java
+ create mode 100644 src/net/minecraft/TransparentPanel.java
+ create mode 100644 src/net/minecraft/Util.java
+ create mode 100644 src/net/minecraft/dirt.png
+ create mode 100644 src/net/minecraft/favicon.png
+ create mode 100644 src/net/minecraft/logo.png
+
+diff --git a/.classpath b/.classpath
+new file mode 100644
+index 0000000..fb50116
+--- /dev/null
++++ b/.classpath
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<classpath>
++	<classpathentry kind="src" path="src"/>
++	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
++	<classpathentry kind="output" path="bin"/>
++</classpath>
+diff --git a/.externalToolBuilders/MinecraftLauncherJarBuilder.launch b/.externalToolBuilders/MinecraftLauncherJarBuilder.launch
+new file mode 100644
+index 0000000..56a581a
+--- /dev/null
++++ b/.externalToolBuilders/MinecraftLauncherJarBuilder.launch
+@@ -0,0 +1,19 @@
++<?xml version="1.0" encoding="UTF-8" standalone="no"?>
++<launchConfiguration type="org.eclipse.ant.AntBuilderLaunchConfigurationType">
++<booleanAttribute key="org.eclipse.ant.ui.ATTR_TARGETS_UPDATED" value="true"/>
++<booleanAttribute key="org.eclipse.ant.ui.DEFAULT_VM_INSTALL" value="false"/>
++<stringAttribute key="org.eclipse.debug.core.ATTR_REFRESH_SCOPE" value="${workspace}"/>
++<booleanAttribute key="org.eclipse.debug.ui.ATTR_LAUNCH_IN_BACKGROUND" value="false"/>
++<listAttribute key="org.eclipse.jdt.launching.CLASSPATH">
++<listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry containerPath=&quot;org.eclipse.jdt.launching.JRE_CONTAINER&quot; path=&quot;1&quot; type=&quot;4&quot;/&gt;&#10;"/>
++<listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry id=&quot;org.eclipse.ant.ui.classpathentry.antHome&quot;&gt;&#10;&lt;memento default=&quot;true&quot;/&gt;&#10;&lt;/runtimeClasspathEntry&gt;&#10;"/>
++<listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry id=&quot;org.eclipse.ant.ui.classpathentry.extraClasspathEntries&quot;&gt;&#10;&lt;memento/&gt;&#10;&lt;/runtimeClasspathEntry&gt;&#10;"/>
++<listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry internalArchive=&quot;/Minecraft-Multi-Launcher&quot; path=&quot;3&quot; type=&quot;2&quot;/&gt;&#10;"/>
++</listAttribute>
++<stringAttribute key="org.eclipse.jdt.launching.CLASSPATH_PROVIDER" value="org.eclipse.ant.ui.AntClasspathProvider"/>
++<booleanAttribute key="org.eclipse.jdt.launching.DEFAULT_CLASSPATH" value="false"/>
++<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="minecraft"/>
++<stringAttribute key="org.eclipse.ui.externaltools.ATTR_LOCATION" value="${workspace_loc:/Minecraft-Multi-Launcher/build-jar.xml}"/>
++<stringAttribute key="org.eclipse.ui.externaltools.ATTR_RUN_BUILD_KINDS" value="full,incremental,"/>
++<booleanAttribute key="org.eclipse.ui.externaltools.ATTR_TRIGGERS_CONFIGURED" value="true"/>
++</launchConfiguration>
+diff --git a/.externalToolBuilders/MinecraftLauncherJarBuilder.launch~ b/.externalToolBuilders/MinecraftLauncherJarBuilder.launch~
+new file mode 100644
+index 0000000..fdd721d
+--- /dev/null
++++ b/.externalToolBuilders/MinecraftLauncherJarBuilder.launch~
+@@ -0,0 +1,19 @@
++<?xml version="1.0" encoding="UTF-8" standalone="no"?>
++<launchConfiguration type="org.eclipse.ant.AntBuilderLaunchConfigurationType">
++<booleanAttribute key="org.eclipse.ant.ui.ATTR_TARGETS_UPDATED" value="true"/>
++<booleanAttribute key="org.eclipse.ant.ui.DEFAULT_VM_INSTALL" value="false"/>
++<stringAttribute key="org.eclipse.debug.core.ATTR_REFRESH_SCOPE" value="${workspace}"/>
++<booleanAttribute key="org.eclipse.debug.ui.ATTR_LAUNCH_IN_BACKGROUND" value="false"/>
++<listAttribute key="org.eclipse.jdt.launching.CLASSPATH">
++<listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry containerPath=&quot;org.eclipse.jdt.launching.JRE_CONTAINER&quot; path=&quot;1&quot; type=&quot;4&quot;/&gt;&#10;"/>
++<listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry id=&quot;org.eclipse.ant.ui.classpathentry.antHome&quot;&gt;&#10;&lt;memento default=&quot;true&quot;/&gt;&#10;&lt;/runtimeClasspathEntry&gt;&#10;"/>
++<listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry id=&quot;org.eclipse.ant.ui.classpathentry.extraClasspathEntries&quot;&gt;&#10;&lt;memento/&gt;&#10;&lt;/runtimeClasspathEntry&gt;&#10;"/>
++<listEntry value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#10;&lt;runtimeClasspathEntry internalArchive=&quot;/Minecraft Launcher&quot; path=&quot;3&quot; type=&quot;2&quot;/&gt;&#10;"/>
++</listAttribute>
++<stringAttribute key="org.eclipse.jdt.launching.CLASSPATH_PROVIDER" value="org.eclipse.ant.ui.AntClasspathProvider"/>
++<booleanAttribute key="org.eclipse.jdt.launching.DEFAULT_CLASSPATH" value="false"/>
++<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="minecraft"/>
++<stringAttribute key="org.eclipse.ui.externaltools.ATTR_LOCATION" value="${workspace_loc:/Minecraft Launcher/build-jar.xml}"/>
++<stringAttribute key="org.eclipse.ui.externaltools.ATTR_RUN_BUILD_KINDS" value="full,incremental,"/>
++<booleanAttribute key="org.eclipse.ui.externaltools.ATTR_TRIGGERS_CONFIGURED" value="true"/>
++</launchConfiguration>
+diff --git a/.project b/.project
+new file mode 100644
+index 0000000..0099301
+--- /dev/null
++++ b/.project
+@@ -0,0 +1,27 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<projectDescription>
++	<name>Minecraft-Multi-Launcher</name>
++	<comment></comment>
++	<projects>
++	</projects>
++	<buildSpec>
++		<buildCommand>
++			<name>org.eclipse.jdt.core.javabuilder</name>
++			<arguments>
++			</arguments>
++		</buildCommand>
++		<buildCommand>
++			<name>org.eclipse.ui.externaltools.ExternalToolBuilder</name>
++			<triggers>full,incremental,</triggers>
++			<arguments>
++				<dictionary>
++					<key>LaunchConfigHandle</key>
++					<value>&lt;project&gt;/.externalToolBuilders/MinecraftLauncherJarBuilder.launch</value>
++				</dictionary>
++			</arguments>
++		</buildCommand>
++	</buildSpec>
++	<natures>
++		<nature>org.eclipse.jdt.core.javanature</nature>
++	</natures>
++</projectDescription>
+diff --git a/.settings/org.eclipse.jdt.core.prefs b/.settings/org.eclipse.jdt.core.prefs
+new file mode 100644
+index 0000000..672e9c3
+--- /dev/null
++++ b/.settings/org.eclipse.jdt.core.prefs
+@@ -0,0 +1,12 @@
++#Sun Mar 11 15:14:43 CET 2012
++eclipse.preferences.version=1
++org.eclipse.jdt.core.compiler.codegen.inlineJsrBytecode=enabled
++org.eclipse.jdt.core.compiler.codegen.targetPlatform=1.7
++org.eclipse.jdt.core.compiler.codegen.unusedLocal=preserve
++org.eclipse.jdt.core.compiler.compliance=1.7
++org.eclipse.jdt.core.compiler.debug.lineNumber=generate
++org.eclipse.jdt.core.compiler.debug.localVariable=generate
++org.eclipse.jdt.core.compiler.debug.sourceFile=generate
++org.eclipse.jdt.core.compiler.problem.assertIdentifier=error
++org.eclipse.jdt.core.compiler.problem.enumIdentifier=error
++org.eclipse.jdt.core.compiler.source=1.7
+diff --git a/build-jar.xml b/build-jar.xml
+new file mode 100644
+index 0000000..9c669d0
+--- /dev/null
++++ b/build-jar.xml
+@@ -0,0 +1,10 @@
++<project name="Minecraft Launcher" default="dist">
++	<property name="MyApp" value="minecraft" />
++	<!-- Create binary distribution -->
++	<target name="dist">
++		<delete file="${MyApp}.jar"/>
++		<jar jarfile="${MyApp}.jar"
++         basedir="bin"
++         manifest="${MyApp}.mf" />
++	</target>
++</project>
+diff --git a/minecraft.mf b/minecraft.mf
+new file mode 100644
+index 0000000..3fb0615
+--- /dev/null
++++ b/minecraft.mf
+@@ -0,0 +1,2 @@
++Manifest-Version: 1.2
++Main-Class: net.minecraft.MinecraftLauncher
+diff --git a/src/LZMA/CRangeDecoder.java b/src/LZMA/CRangeDecoder.java
+new file mode 100644
+index 0000000..93bd5fe
+--- /dev/null
++++ b/src/LZMA/CRangeDecoder.java
+@@ -0,0 +1,164 @@
++package LZMA;
++
++import java.io.InputStream;
++import java.io.IOException;
++
++class CRangeDecoder {
++
++        final static int kNumTopBits = 24;
++        final static int kTopValue = (1 << kNumTopBits);
++        final static int kTopValueMask = ~(kTopValue-1);
++
++        final static int kNumBitModelTotalBits = 11;
++        final static int kBitModelTotal = (1 << kNumBitModelTotalBits);
++        final static int kNumMoveBits = 5;
++
++        InputStream inStream;
++
++        int Range;
++        int Code;
++
++        byte buffer[];
++        int buffer_size;
++        int buffer_ind;
++
++        CRangeDecoder( InputStream iStream ) throws IOException {
++                this.buffer = new byte[1<<14];
++                this.inStream = iStream;
++                this.Code = 0;
++                this.Range = -1; // 0xFFFFFFFFL;
++                for(int i = 0; i < 5; i++)
++                        this.Code = (this.Code << 8) | (Readbyte());
++        }
++
++        int Readbyte() throws IOException {
++                if (buffer_size == buffer_ind) {
++                        buffer_size = inStream.read(buffer);
++                        buffer_ind = 0;
++
++                        if (buffer_size < 1)
++                                throw new LzmaException ("LZMA : Data Error");
++                }
++                return buffer[buffer_ind++] & 0xFF;
++        }
++
++        int DecodeDirectBits(int numTotalBits) throws IOException {
++                int result = 0;
++                for (int i = numTotalBits; i > 0; i--) {
++                        Range >>>= 1;
++                        int t = ((Code - Range) >>> 31);
++                        Code -= Range & (t - 1);
++                        result = (result << 1) | (1 - t);
++            
++                        if (Range < kTopValue) // because of "Range >>>= 1",   0 <= Range <= 0x7FFFFFFF
++                        {
++                                Code = (Code << 8) | Readbyte();
++                                Range <<= 8;
++                        }
++                }
++                return result;
++        }
++
++        int BitDecode(int prob[],int index) throws IOException {
++                int newBound = (this.Range >>> kNumBitModelTotalBits) * prob[index];
++                if ((this.Code & 0xFFFFFFFFL) < (newBound & 0xFFFFFFFFL)) // unsigned comparison
++                {
++                        this.Range = newBound;
++                        prob[index] += (kBitModelTotal - prob[index]) >>> kNumMoveBits;
++                        // if ((this.Range & 0xFFFFFFFFL) < Decoder.kTopValue)
++                        if ((this.Range & kTopValueMask) == 0) {
++                                this.Code = (this.Code << 8) | Readbyte();
++                        this.Range <<= 8;
++                        }
++                        return 0;
++                } else {
++                        this.Range -= newBound;
++                        this.Code -= newBound;
++                        prob[index] -= (prob[index]) >>> kNumMoveBits;
++                        // if ((this.Range & 0xFFFFFFFFL) < Decoder.kTopValue)
++                        if ((this.Range & kTopValueMask) == 0) {
++                                this.Code = (this.Code << 8) | this.Readbyte();
++                                this.Range <<= 8;
++                        }
++                        return 1;
++                }
++        }
++
++        int BitTreeDecode(int probs [], int index , int numLevels) throws IOException {
++                int mi = 1;
++                for(int i = numLevels; i > 0; i--) {
++                        mi = (mi + mi) + BitDecode(probs, index + mi);
++                }
++                return mi - (1 << numLevels);
++        }
++
++        int ReverseBitTreeDecode(int probs[] ,int index, int numLevels) throws IOException {
++                int mi = 1;
++                int symbol = 0;
++
++                for(int i = 0; i < numLevels; i++) {
++                        int bit = BitDecode(probs, index + mi);
++                        mi = mi + mi + bit;
++                        symbol |= (bit << i);
++                }
++                return symbol;
++        }
++
++        byte LzmaLiteralDecode(int probs[],int index) throws IOException {
++                int symbol = 1;
++                do {
++                        symbol = (symbol + symbol) | BitDecode(probs, index + symbol);
++                } while (symbol < 0x100);
++
++                return (byte)symbol;
++        }
++
++        byte LzmaLiteralDecodeMatch(int probs [], int index, byte matchbyte) throws IOException {
++                int symbol = 1;
++                do {
++                        int matchBit = (matchbyte >> 7) & 1;
++                        matchbyte <<= 1;
++                        int bit = BitDecode(probs , index + ((1 + matchBit) << 8) + symbol);
++                        symbol = (symbol << 1) | bit;
++
++                        if (matchBit != bit) {
++                                while (symbol < 0x100) {
++                                        symbol = (symbol + symbol) | BitDecode(probs , index + symbol);
++                                }
++                                break;
++                        }
++                } while (symbol < 0x100);
++
++                return (byte)symbol;
++        }
++
++        final static int kNumPosBitsMax = 4;
++        final static int kNumPosStatesMax = (1 << kNumPosBitsMax);
++
++        final static int kLenNumLowBits = 3;
++        final static int kLenNumLowSymbols = (1 << kLenNumLowBits);
++        final static int kLenNumMidBits = 3;
++        final static int kLenNumMidSymbols = (1 << kLenNumMidBits);
++        final static int kLenNumHighBits = 8;
++        final static int kLenNumHighSymbols = (1 << kLenNumHighBits);
++
++        final static int LenChoice = 0;
++        final static int LenChoice2 = (LenChoice + 1);
++        final static int LenLow = (LenChoice2 + 1);
++        final static int LenMid = (LenLow + (kNumPosStatesMax << kLenNumLowBits));
++        final static int LenHigh = (LenMid + (kNumPosStatesMax << kLenNumMidBits));
++        final static int kNumLenProbs = (LenHigh + kLenNumHighSymbols);
++
++        int LzmaLenDecode(int probs[], int index, int posState) throws IOException {
++                if(BitDecode(probs, index + LenChoice) == 0)
++                        return BitTreeDecode(probs, index + LenLow +
++                                             (posState << kLenNumLowBits), kLenNumLowBits);
++
++                if(BitDecode(probs, index + LenChoice2) == 0)
++                        return kLenNumLowSymbols + BitTreeDecode(probs, index + LenMid +
++                                (posState << kLenNumMidBits), kLenNumMidBits);
++
++                return kLenNumLowSymbols + kLenNumMidSymbols +
++                       BitTreeDecode(probs, index + LenHigh, kLenNumHighBits);
++        }
++}
+diff --git a/src/LZMA/LzmaException.java b/src/LZMA/LzmaException.java
+new file mode 100644
+index 0000000..4d338fc
+--- /dev/null
++++ b/src/LZMA/LzmaException.java
+@@ -0,0 +1,14 @@
++package LZMA;
++
++public class LzmaException extends java.io.IOException {
++        /**
++         * Comment for <code>serialVersionUID</code>
++         */
++        private static final long serialVersionUID = 3689351022372206390L;
++
++        public LzmaException() {}
++
++        public LzmaException (String msg) {
++                super(msg);
++        }
++}
+diff --git a/src/LZMA/LzmaInputStream.java b/src/LZMA/LzmaInputStream.java
+new file mode 100644
+index 0000000..f2436c5
+--- /dev/null
++++ b/src/LZMA/LzmaInputStream.java
+@@ -0,0 +1,327 @@
++package LZMA;
++
++import java.io.InputStream;
++import java.io.IOException;
++
++public class LzmaInputStream extends java.io.FilterInputStream {
++        boolean isClosed;
++        CRangeDecoder RangeDecoder;
++        byte  [] dictionary;
++        int dictionarySize;
++        int dictionaryPos;
++        int GlobalPos;
++        int rep0, rep1, rep2, rep3;
++        int lc;
++        int lp;
++        int pb;
++        int State;
++        boolean PreviousIsMatch;
++        int RemainLen;
++        int [] probs;
++
++        byte [] uncompressed_buffer;
++        int uncompressed_size;
++        int uncompressed_offset;
++        long GlobalNowPos;
++        long GlobalOutSize;
++
++        static final int LZMA_BASE_SIZE = 1846;
++        static final int LZMA_LIT_SIZE  = 768;
++
++        final static int kBlockSize = 0x10000;
++
++        static final int kNumStates = 12;
++
++        static final int kStartPosModelIndex = 4;
++        static final int kEndPosModelIndex   = 14;
++        static final int kNumFullDistances   = (1 << (kEndPosModelIndex >> 1));
++
++        static final int kNumPosSlotBits    = 6;
++        static final int kNumLenToPosStates = 4;
++
++        static final int kNumAlignBits   = 4;
++        static final int kAlignTableSize = (1 << kNumAlignBits);
++
++        static final int kMatchMinLen = 2;
++
++        static final int IsMatch     = 0;
++        static final int IsRep       = (IsMatch + (kNumStates << CRangeDecoder.kNumPosBitsMax));
++        static final int IsRepG0     = (IsRep + kNumStates);
++        static final int IsRepG1     = (IsRepG0 + kNumStates);
++        static final int IsRepG2     = (IsRepG1 + kNumStates);
++        static final int IsRep0Long  = (IsRepG2 + kNumStates);
++        static final int PosSlot     = (IsRep0Long + (kNumStates << CRangeDecoder.kNumPosBitsMax));
++        static final int SpecPos     = (PosSlot + (kNumLenToPosStates << kNumPosSlotBits));
++        static final int Align       = (SpecPos + kNumFullDistances - kEndPosModelIndex);
++        static final int LenCoder    = (Align + kAlignTableSize);
++        static final int RepLenCoder = (LenCoder + CRangeDecoder.kNumLenProbs);
++        static final int Literal     = (RepLenCoder + CRangeDecoder.kNumLenProbs);
++
++        public LzmaInputStream (InputStream in) throws IOException {
++                super(in);
++
++                isClosed = false;
++
++                readHeader();
++
++                fill_buffer();
++        }
++
++        private void LzmaDecode(int outSize)  throws IOException {
++                byte previousbyte;
++                int posStateMask = (1 << (pb)) - 1;
++                int literalPosMask = (1 << (lp)) - 1;
++
++                uncompressed_size = 0;
++
++                if (RemainLen == -1) {
++                        return ;
++                }
++
++                while(RemainLen > 0 && uncompressed_size < outSize) {
++                        int pos = dictionaryPos - rep0;
++                        if (pos < 0)
++                                pos += dictionarySize;
++                        uncompressed_buffer[uncompressed_size++] = dictionary[dictionaryPos] = dictionary[pos];
++                        if (++dictionaryPos == dictionarySize)
++                                dictionaryPos = 0;
++                        RemainLen--;
++                }
++                if (dictionaryPos == 0)
++                        previousbyte = dictionary[dictionarySize - 1];
++                else
++                        previousbyte = dictionary[dictionaryPos - 1];
++
++                while(uncompressed_size < outSize) {
++                        int posState = (int)( (uncompressed_size + GlobalPos ) & posStateMask);
++
++                        if (RangeDecoder.BitDecode(probs, IsMatch + (State << CRangeDecoder.kNumPosBitsMax) + posState) == 0) {
++                                int ind_prob = Literal + (LZMA_LIT_SIZE * (((
++                                                                (uncompressed_size + GlobalPos )
++                                                                & literalPosMask) << lc) + ((previousbyte & 0xFF) >> (8 - lc))));
++
++                                if (State < 4)
++                                        State = 0;
++                                else if (State < 10)
++                                        State -= 3;
++                                else
++                                        State -= 6;
++                                if (PreviousIsMatch) {
++                                        int pos = dictionaryPos - rep0;
++                                        if (pos < 0)
++                                                pos += dictionarySize;
++                                        byte matchbyte = dictionary[pos];
++
++                                        previousbyte = RangeDecoder.LzmaLiteralDecodeMatch(probs,ind_prob, matchbyte);
++                                        PreviousIsMatch = false;
++                                } else {
++                                        previousbyte = RangeDecoder.LzmaLiteralDecode(probs,ind_prob);
++                                }
++
++                                uncompressed_buffer[uncompressed_size++] = previousbyte;
++
++                                dictionary[dictionaryPos] = previousbyte;
++                                if (++dictionaryPos == dictionarySize)
++                                        dictionaryPos = 0;
++
++                        } else {
++                                PreviousIsMatch = true;
++                                if (RangeDecoder.BitDecode(probs, IsRep + State) == 1) {
++                                        if (RangeDecoder.BitDecode(probs, IsRepG0 + State) == 0) {
++                                                if (RangeDecoder.BitDecode(probs, IsRep0Long + (State << CRangeDecoder.kNumPosBitsMax) + posState) == 0) {
++
++                                                        if ((uncompressed_size + GlobalPos) == 0) {
++                                                                throw new LzmaException ("LZMA : Data Error");
++                                                        }
++                                                        State = State < 7 ? 9 : 11;
++
++                                                        int pos = dictionaryPos - rep0;
++                                                        if (pos < 0)
++                                                                pos += dictionarySize;
++                                                        previousbyte = dictionary[pos];
++                                                        dictionary[dictionaryPos] = previousbyte;
++                                                        if (++dictionaryPos == dictionarySize)
++                                                                dictionaryPos = 0;
++
++                                                        uncompressed_buffer[uncompressed_size++] = previousbyte;
++                                                        continue;
++                                                }
++                                        } else {
++                                                int distance;
++                                                if(RangeDecoder.BitDecode(probs, IsRepG1 + State) == 0)
++                                                        distance = rep1;
++                                                else {
++                                                        if(RangeDecoder.BitDecode(probs, IsRepG2 + State) == 0)
++                                                                distance = rep2;
++                                                        else {
++                                                                distance = rep3;
++                                                                rep3 = rep2;
++                                                        }
++                                                        rep2 = rep1;
++                                                }
++                                                rep1 = rep0;
++                                                rep0 = distance;
++                                        }
++                                        RemainLen = RangeDecoder.LzmaLenDecode(probs, RepLenCoder, posState);
++                                        State = State < 7 ? 8 : 11;
++                                } else {
++                                        rep3 = rep2;
++                                        rep2 = rep1;
++                                        rep1 = rep0;
++                                        State = State < 7 ? 7 : 10;
++                                        RemainLen = RangeDecoder.LzmaLenDecode(probs, LenCoder, posState);
++                                        int posSlot = RangeDecoder.BitTreeDecode(probs , PosSlot +
++                                                                             ((RemainLen < kNumLenToPosStates ? RemainLen : kNumLenToPosStates - 1) <<
++                                                                              kNumPosSlotBits), kNumPosSlotBits);
++                                        if (posSlot >= kStartPosModelIndex) {
++                                                int numDirectBits = ((posSlot >> 1) - 1);
++                                                rep0 = ((2 | (posSlot & 1)) << numDirectBits);
++                                                if (posSlot < kEndPosModelIndex) {
++                                                        rep0 += RangeDecoder.ReverseBitTreeDecode(
++                                                                    probs, SpecPos + rep0 - posSlot - 1, numDirectBits);
++                                                } else {
++                                                        rep0 += RangeDecoder.DecodeDirectBits(
++                                                                    numDirectBits - kNumAlignBits) << kNumAlignBits;
++                                                        rep0 += RangeDecoder.ReverseBitTreeDecode(probs, Align, kNumAlignBits);
++                                                }
++                                        } else
++                                                rep0 = posSlot;
++                                        rep0++;
++                                }
++                                if (rep0 == 0) {
++
++                                        RemainLen = -1;
++                                        break;
++                                }
++                                if (rep0 > uncompressed_size
++
++                                        + GlobalPos
++
++                                   ) {
++                                        throw new LzmaException ("LZMA : Data Error");
++                                }
++                                RemainLen += kMatchMinLen;
++                                do {
++
++                                        int pos = dictionaryPos - rep0;
++                                        if (pos < 0)
++                                                pos += dictionarySize;
++                                        previousbyte = dictionary[pos];
++                                        dictionary[dictionaryPos] = previousbyte;
++                                        if (++dictionaryPos == dictionarySize)
++                                                dictionaryPos = 0;
++
++                                        uncompressed_buffer[uncompressed_size++] = previousbyte;
++                                        RemainLen--;
++                                } while(RemainLen > 0 && uncompressed_size < outSize);
++                        }
++                }
++
++                GlobalPos = GlobalPos + uncompressed_size;
++        }
++
++        private void fill_buffer() throws IOException {
++                if (GlobalNowPos < GlobalOutSize) {
++                        uncompressed_offset = 0;
++                        long lblockSize = GlobalOutSize - GlobalNowPos;
++                        int blockSize;
++                        if (lblockSize > kBlockSize)
++                                blockSize = kBlockSize;
++                        else
++                                blockSize = (int)lblockSize;
++
++                        LzmaDecode(blockSize);
++
++                        if (uncompressed_size == 0) {
++                                GlobalOutSize = GlobalNowPos;
++                        } else {
++                                GlobalNowPos += uncompressed_size;
++                        }
++                }
++        }
++
++        private void readHeader() throws IOException {
++                byte [] properties = new byte[5];
++
++                if (5 != in.read(properties))
++                        throw new LzmaException ("LZMA header corrupted : Properties error");
++
++                GlobalOutSize = 0;
++                for (int ii = 0; ii < 8; ii++) {
++                        int b = in.read();
++                        if (b == -1)
++                                throw new LzmaException ("LZMA header corrupted : Size error");
++                        GlobalOutSize += ((long)b) << (ii * 8);
++                }
++
++                if (GlobalOutSize == -1) GlobalOutSize=Long.MAX_VALUE;
++
++                int prop0 = properties[0] & 0xFF;
++                if (prop0 >= (9*5*5)) {
++                        throw new LzmaException ("LZMA header corrupted : Properties error");
++                }
++
++                for (pb = 0; prop0 >= (9 * 5); pb++, prop0 -= (9 * 5))
++                        ;
++                for (lp = 0; prop0 >= 9; lp++, prop0 -= 9)
++                        ;
++                lc = prop0;
++
++                int lzmaInternalSize = (LZMA_BASE_SIZE + (LZMA_LIT_SIZE << (lc + lp)));
++
++                probs = new int[lzmaInternalSize];
++
++                dictionarySize = 0;
++                for (int i = 0; i < 4; i++)
++                        dictionarySize += (properties[1 + i]&0xFF) << (i * 8);
++                dictionary = new byte[dictionarySize];
++                if (dictionary == null) {
++                        throw new LzmaException ("LZMA : can't allocate");
++                }
++
++                int numProbs = Literal + (LZMA_LIT_SIZE << (lc + lp));
++
++                RangeDecoder = new CRangeDecoder(in);
++                dictionaryPos = 0;
++                GlobalPos = 0;
++                rep0 = rep1 = rep2 = rep3 = 1;
++                State = 0;
++                PreviousIsMatch = false;
++                RemainLen = 0;
++                dictionary[dictionarySize - 1] = 0;
++                for (int i = 0; i < numProbs; i++)
++                        probs[i] = CRangeDecoder.kBitModelTotal >> 1;
++
++                uncompressed_buffer = new byte [kBlockSize];
++                uncompressed_size = 0;
++                uncompressed_offset = 0;
++
++                GlobalNowPos = 0;
++        }
++
++        public int read (byte[] buf, int off, int len) throws IOException {
++                if (isClosed)
++                        throw new IOException ("stream closed");
++
++                if ((off | len | (off + len) | (buf.length - (off + len))) < 0) {
++                        throw new IndexOutOfBoundsException();
++                }
++                if (len == 0)
++                        return 0;
++
++                if (uncompressed_offset == uncompressed_size)
++                        fill_buffer();
++                if (uncompressed_offset == uncompressed_size)
++                        return -1;
++
++                int l = Math.min(len,uncompressed_size-uncompressed_offset);
++                System.arraycopy (uncompressed_buffer, uncompressed_offset, buf, off, l);
++                uncompressed_offset += l;
++                return l;
++        }
++
++        public void close () throws IOException {
++                isClosed = true;
++                super.close ();
++        }
++}
+\ No newline at end of file
+diff --git a/src/net/minecraft/GameUpdater.java b/src/net/minecraft/GameUpdater.java
+new file mode 100644
+index 0000000..d62196b
+--- /dev/null
++++ b/src/net/minecraft/GameUpdater.java
+@@ -0,0 +1,809 @@
++package net.minecraft;
++
++import java.applet.Applet;
++import java.io.DataInputStream;
++import java.io.DataOutputStream;
++import java.io.File;
++import java.io.FileInputStream;
++import java.io.FileOutputStream;
++import java.io.FilePermission;
++import java.io.IOException;
++import java.io.InputStream;
++import java.io.OutputStream;
++import java.io.PrintWriter;
++import java.io.StringWriter;
++import java.io.Writer;
++import java.lang.reflect.Constructor;
++import java.lang.reflect.Field;
++import java.lang.reflect.Method;
++import java.math.BigInteger;
++import java.net.HttpURLConnection;
++import java.net.JarURLConnection;
++import java.net.SocketPermission;
++import java.net.URL;
++import java.net.URLClassLoader;
++import java.net.URLConnection;
++import java.security.AccessControlException;
++import java.security.AccessController;
++import java.security.CodeSource;
++import java.security.MessageDigest;
++import java.security.PermissionCollection;
++import java.security.PrivilegedExceptionAction;
++import java.security.SecureClassLoader;
++import java.security.cert.Certificate;
++import java.util.Enumeration;
++import java.util.Properties;
++import java.util.StringTokenizer;
++import java.util.Vector;
++import java.util.jar.JarEntry;
++import java.util.jar.JarFile;
++import java.util.jar.JarOutputStream;
++import java.util.jar.Pack200;
++import net.minecraft.LoginForm;
++
++public class GameUpdater
++  implements Runnable
++{
++  public static final int STATE_INIT = 1;
++  public static final int STATE_DETERMINING_PACKAGES = 2;
++  public static final int STATE_CHECKING_CACHE = 3;
++  public static final int STATE_DOWNLOADING = 4;
++  public static final int STATE_EXTRACTING_PACKAGES = 5;
++  public static final int STATE_UPDATING_CLASSPATH = 6;
++  public static final int STATE_SWITCHING_APPLET = 7;
++  public static final int STATE_INITIALIZE_REAL_APPLET = 8;
++  public static final int STATE_START_REAL_APPLET = 9;
++  public static final int STATE_DONE = 10;
++  public int percentage;
++  public int currentSizeDownload;
++  public int totalSizeDownload;
++  public int currentSizeExtract;
++  public int totalSizeExtract;
++  protected URL[] urlList;
++  private static ClassLoader classLoader;
++  protected Thread loaderThread;
++  protected Thread animationThread;
++  public boolean fatalError;
++  public String fatalErrorDescription;
++  protected String subtaskMessage = "";
++  protected int state = 1;
++
++  protected boolean lzmaSupported = false;
++  protected boolean pack200Supported = false;
++
++  protected String[] genericErrorMessage = { 
++    "An error occured while loading the applet.", "Please contact support to resolve this issue.", "<placeholder for error message>" };
++  protected boolean certificateRefused;
++  protected String[] certificateRefusedMessage = { 
++    "Permissions for Applet Refused.", "Please accept the permissions dialog to allow", "the applet to continue the loading process." };
++
++  protected static boolean natives_loaded = false;
++  public static boolean forceUpdate = false;
++  private String latestVersion;
++  private String mainGameUrl;
++  public boolean pauseAskUpdate;
++  public boolean shouldUpdate;
++
++  public GameUpdater(String latestVersion, String mainGameUrl)
++  {
++    this.latestVersion = latestVersion;
++    this.mainGameUrl = mainGameUrl;
++  }
++
++  public void init() {
++    state = 1;
++    try
++    {
++      Class.forName("LZMA.LzmaInputStream");
++      lzmaSupported = true;
++    }
++    catch (Throwable localThrowable) {
++    }
++    try {
++      Pack200.class.getSimpleName();
++      pack200Supported = true;
++    } catch (Throwable localThrowable1) {
++    }
++  }
++
++  private String generateStacktrace(Exception exception) {
++    Writer result = new StringWriter();
++    PrintWriter printWriter = new PrintWriter(result);
++    exception.printStackTrace(printWriter);
++    return result.toString();
++  }
++
++  protected String getDescriptionForState()
++  {
++    switch (state) {
++    case 1:
++      return "Initializing loader";
++    case 2:
++      return "Determining packages to load";
++    case 3:
++      return "Checking cache for existing files";
++    case 4:
++      return "Downloading packages";
++    case 5:
++      return "Extracting downloaded packages";
++    case 6:
++      return "Updating classpath";
++    case 7:
++      return "Switching applet";
++    case 8:
++      return "Initializing real applet";
++    case 9:
++      return "Starting real applet";
++    case 10:
++      return "Done loading";
++    }
++    return "unknown state";
++  }
++
++  protected String trimExtensionByCapabilities(String file)
++  {
++    if (!pack200Supported) {
++      file = file.replaceAll(".pack", "");
++    }
++
++    if (!lzmaSupported) {
++      file = file.replaceAll(".lzma", "");
++    }
++    return file;
++  }
++
++  protected void loadJarURLs() throws Exception {
++    state = 2;
++    String jarList = "lwjgl.jar, jinput.jar, lwjgl_util.jar, " + mainGameUrl;
++    jarList = trimExtensionByCapabilities(jarList);
++
++    StringTokenizer jar = new StringTokenizer(jarList, ", ");
++    int jarCount = jar.countTokens() + 1;
++
++    urlList = new URL[jarCount];
++
++    URL path = new URL("http://s3.amazonaws.com/MinecraftDownload/");
++
++    for (int i = 0; i < jarCount - 1; i++) {
++      urlList[i] = new URL(path, jar.nextToken());
++    }
++
++    String osName = System.getProperty("os.name");
++    String nativeJar = null;
++
++    if (osName.startsWith("Win"))
++      nativeJar = "windows_natives.jar.lzma";
++    else if (osName.startsWith("Linux"))
++      nativeJar = "linux_natives.jar.lzma";
++    else if (osName.startsWith("Mac"))
++      nativeJar = "macosx_natives.jar.lzma";
++    else if ((osName.startsWith("Solaris")) || (osName.startsWith("SunOS")))
++      nativeJar = "solaris_natives.jar.lzma";
++    else {
++      fatalErrorOccured("OS (" + osName + ") not supported", null);
++    }
++
++    if (nativeJar == null) {
++      fatalErrorOccured("no lwjgl natives files found", null);
++    } else {
++      nativeJar = trimExtensionByCapabilities(nativeJar);
++      urlList[(jarCount - 1)] = new URL(path, nativeJar);
++    }
++  }
++
++  public void run()
++  {
++    init();
++    state = 3;
++
++    percentage = 5;
++    try
++    {
++      loadJarURLs();
++
++      String path = (String)AccessController.doPrivileged(new PrivilegedExceptionAction<Object>() {
++        public Object run() throws Exception {
++		return Util.getWorkingDirectory("/Desktop/Multi-Minecraft/" + LoginForm.mcdir + "/.minecraft") + File.separator + "bin" + File.separator;
++        }
++      });
++      File dir = new File(path);
++
++      if (!dir.exists()) {
++        dir.mkdirs();
++      }
++
++      if (latestVersion != null) {
++        File versionFile = new File(dir, "version");
++
++        boolean cacheAvailable = false;
++        if ((!forceUpdate) && (versionFile.exists()) && (
++          (latestVersion.equals("-1")) || (latestVersion.equals(readVersionFile(versionFile))))) {
++          cacheAvailable = true;
++          percentage = 90;
++        }
++
++        if ((forceUpdate) || (!cacheAvailable)) {
++          shouldUpdate = true;
++          if ((!forceUpdate) && (versionFile.exists()))
++          {
++            checkShouldUpdate();
++          }
++          if (shouldUpdate)
++          {
++            writeVersionFile(versionFile, "");
++
++            downloadJars(path);
++            extractJars(path);
++            extractNatives(path);
++
++            if (latestVersion != null) {
++              percentage = 90;
++              writeVersionFile(versionFile, latestVersion);
++            }
++          } else {
++            cacheAvailable = true;
++            percentage = 90;
++          }
++        }
++      }
++
++      updateClassPath(dir);
++      state = 10;
++    } catch (AccessControlException ace) {
++      fatalErrorOccured(ace.getMessage(), ace);
++      certificateRefused = true;
++    } catch (Exception e) {
++      fatalErrorOccured(e.getMessage(), e);
++    } finally {
++      loaderThread = null;
++    }
++  }
++
++  private void checkShouldUpdate() {
++    pauseAskUpdate = true;
++    while (pauseAskUpdate)
++      try {
++        Thread.sleep(1000L);
++      } catch (InterruptedException e) {
++        e.printStackTrace();
++      }
++  }
++
++  protected String readVersionFile(File file) throws Exception
++  {
++    DataInputStream dis = new DataInputStream(new FileInputStream(file));
++    String version = dis.readUTF();
++    dis.close();
++    return version;
++  }
++
++  protected void writeVersionFile(File file, String version) throws Exception {
++    DataOutputStream dos = new DataOutputStream(new FileOutputStream(file));
++    dos.writeUTF(version);
++    dos.close();
++  }
++
++  protected void updateClassPath(File dir)
++    throws Exception
++  {
++    state = 6;
++
++    percentage = 95;
++
++    URL[] urls = new URL[urlList.length];
++    for (int i = 0; i < urlList.length; i++) {
++      urls[i] = new File(dir, getJarName(urlList[i])).toURI().toURL();
++    }
++
++    if (classLoader == null) {
++      classLoader = new URLClassLoader(urls) {
++        protected PermissionCollection getPermissions(CodeSource codesource) {
++          PermissionCollection perms = null;
++          try
++          {
++            Method method = SecureClassLoader.class.getDeclaredMethod("getPermissions", new Class[] { 
++              CodeSource.class });
++
++            method.setAccessible(true);
++            perms = (PermissionCollection)method.invoke(getClass().getClassLoader(), new Object[] { 
++              codesource });
++
++            String host = "www.minecraft.net";
++
++            if ((host != null) && (host.length() > 0))
++            {
++              perms.add(new SocketPermission(host, "connect,accept"));
++            } else codesource.getLocation().getProtocol().equals("file");
++
++            perms.add(new FilePermission("<<ALL FILES>>", "read"));
++          }
++          catch (Exception e) {
++            e.printStackTrace();
++          }
++
++          return perms;
++        }
++      };
++    }
++    String path = dir.getAbsolutePath();
++    
++    String path1 = path.replace("/.minecraft/bin", "");
++    System.setProperty("user.home", path1);
++    System.out.println(path1);
++    if (!path.endsWith(File.separator)) path = path + File.separator;
++    unloadNatives(path);
++
++    System.setProperty("org.lwjgl.librarypath", path + "natives");
++    System.setProperty("net.java.games.input.librarypath", path + "natives");
++    
++
++    natives_loaded = true;
++  }
++
++  private void unloadNatives(String nativePath)
++  {
++    if (!natives_loaded) {
++      return;
++    }
++    try
++    {
++      Field field = ClassLoader.class.getDeclaredField("loadedLibraryNames");
++      field.setAccessible(true);
++      Vector<?> libs = (Vector<?>)field.get(getClass().getClassLoader());
++
++      String path = new File(nativePath).getCanonicalPath();
++
++      for (int i = 0; i < libs.size(); i++) {
++        String s = (String)libs.get(i);
++
++        if (s.startsWith(path)) {
++          libs.remove(i);
++          i--;
++        }
++      }
++    } catch (Exception e) {
++      e.printStackTrace();
++    }
++  }
++
++  public Applet createApplet() throws ClassNotFoundException, InstantiationException, IllegalAccessException
++  {
++    Class<?> appletClass = classLoader.loadClass("net.minecraft.client.MinecraftApplet");
++    return (Applet)appletClass.newInstance();
++  }
++
++  protected void downloadJars(String path)
++    throws Exception
++  {
++    File versionFile = new File(path, "md5s");
++    Properties md5s = new Properties();
++    if (versionFile.exists()) {
++      try {
++        FileInputStream fis = new FileInputStream(versionFile);
++        md5s.load(fis);
++        fis.close();
++      } catch (Exception e) {
++        e.printStackTrace();
++      }
++    }
++    state = 4;
++
++    int[] fileSizes = new int[urlList.length];
++    boolean[] skip = new boolean[urlList.length];
++
++    for (int i = 0; i < urlList.length; i++) {
++      URLConnection urlconnection = urlList[i].openConnection();
++      urlconnection.setDefaultUseCaches(false);
++      skip[i] = false;
++      if ((urlconnection instanceof HttpURLConnection)) {
++        ((HttpURLConnection)urlconnection).setRequestMethod("HEAD");
++
++        String etagOnDisk = "\"" + md5s.getProperty(getFileName(urlList[i])) + "\"";
++
++        if ((!forceUpdate) && (etagOnDisk != null)) urlconnection.setRequestProperty("If-None-Match", etagOnDisk);
++
++        int code = ((HttpURLConnection)urlconnection).getResponseCode();
++        if (code / 100 == 3) {
++          skip[i] = true;
++        }
++      }
++      fileSizes[i] = urlconnection.getContentLength();
++      totalSizeDownload += fileSizes[i];
++    }
++
++    int initialPercentage = this.percentage = 10;
++
++    byte[] buffer = new byte[65536];
++    for (int i = 0; i < urlList.length; i++) {
++      if (skip[i] != false) {
++        percentage = (initialPercentage + fileSizes[i] * 45 / totalSizeDownload);
++      }
++      else
++      {
++        try
++        {
++          md5s.remove(getFileName(urlList[i]));
++          md5s.store(new FileOutputStream(versionFile), "md5 hashes for downloaded files");
++        } catch (Exception e) {
++          e.printStackTrace();
++        }
++
++        int unsuccessfulAttempts = 0;
++        int maxUnsuccessfulAttempts = 3;
++        boolean downloadFile = true;
++
++        while (downloadFile) {
++          downloadFile = false;
++
++          URLConnection urlconnection = urlList[i].openConnection();
++
++          String etag = "";
++
++          if ((urlconnection instanceof HttpURLConnection)) {
++            urlconnection.setRequestProperty("Cache-Control", "no-cache");
++
++            urlconnection.connect();
++
++            etag = urlconnection.getHeaderField("ETag");
++            etag = etag.substring(1, etag.length() - 1);
++          }
++
++          String currentFile = getFileName(urlList[i]);
++          InputStream inputstream = getJarInputStream(currentFile, urlconnection);
++          FileOutputStream fos = new FileOutputStream(path + currentFile);
++
++          long downloadStartTime = System.currentTimeMillis();
++          int downloadedAmount = 0;
++          int fileSize = 0;
++          String downloadSpeedMessage = "";
++
++          MessageDigest m = MessageDigest.getInstance("MD5");
++          int bufferSize;
++          while ((bufferSize = inputstream.read(buffer, 0, buffer.length)) != -1)
++          {
++            fos.write(buffer, 0, bufferSize);
++            m.update(buffer, 0, bufferSize);
++            currentSizeDownload += bufferSize;
++            fileSize += bufferSize;
++            percentage = (initialPercentage + currentSizeDownload * 45 / totalSizeDownload);
++            subtaskMessage = ("Retrieving: " + currentFile + " " + currentSizeDownload * 100 / totalSizeDownload + "%");
++
++            downloadedAmount += bufferSize;
++            long timeLapse = System.currentTimeMillis() - downloadStartTime;
++
++            if (timeLapse >= 1000L) {
++              float downloadSpeed = downloadedAmount / (float)timeLapse;
++              downloadSpeed = (int)(downloadSpeed * 100.0F) / 100.0F;
++              downloadSpeedMessage = " @ " + downloadSpeed + " KB/sec";
++              downloadedAmount = 0;
++              downloadStartTime += 1000L;
++            }
++
++            subtaskMessage += downloadSpeedMessage;
++          }
++
++          inputstream.close();
++          fos.close();
++          String md5 = new BigInteger(1, m.digest()).toString(16);
++          while (md5.length() < 32) {
++            md5 = "0" + md5;
++          }
++          boolean md5Matches = true;
++          if (etag != null) {
++            md5Matches = md5.equals(etag);
++          }
++
++          if ((urlconnection instanceof HttpURLConnection)) {
++            if ((md5Matches) && ((fileSize == fileSizes[i]) || (fileSizes[i] <= 0)))
++            {
++              try {
++                md5s.setProperty(getFileName(urlList[i]), etag);
++                md5s.store(new FileOutputStream(versionFile), "md5 hashes for downloaded files");
++              } catch (Exception e) {
++                e.printStackTrace();
++              }
++            } else {
++              unsuccessfulAttempts++;
++              if (unsuccessfulAttempts < maxUnsuccessfulAttempts) {
++                downloadFile = true;
++                currentSizeDownload -= fileSize;
++              } else {
++                throw new Exception("failed to download " + currentFile);
++              }
++            }
++          }
++        }
++      }
++    }
++
++    subtaskMessage = "";
++  }
++
++  protected InputStream getJarInputStream(String currentFile, final URLConnection urlconnection)
++    throws Exception
++  {
++    final InputStream[] is = new InputStream[1];
++
++    for (int j = 0; (j < 3) && (is[0] == null); j++) {
++      Thread t = new Thread() {
++        public void run() {
++          try {
++            is[0] = urlconnection.getInputStream();
++          }
++          catch (IOException localIOException)
++          {
++          }
++        }
++      };
++      t.setName("JarInputStreamThread");
++      t.start();
++
++      int iterationCount = 0;
++      while ((is[0] == null) && (iterationCount++ < 5)) {
++        try {
++          t.join(1000L);
++        }
++        catch (InterruptedException localInterruptedException)
++        {
++        }
++      }
++      if (is[0] != null) continue;
++      try {
++        t.interrupt();
++        t.join();
++      }
++      catch (InterruptedException localInterruptedException1)
++      {
++      }
++    }
++
++    if (is[0] == null) {
++      if (currentFile.equals("minecraft.jar")) {
++        throw new Exception("Unable to download " + currentFile);
++      }
++      throw new Exception("Unable to download " + currentFile);
++    }
++
++    return is[0];
++  }
++
++  protected void extractLZMA(String in, String out)
++    throws Exception
++  {
++    File f = new File(in);
++    if (!f.exists()) return;
++    FileInputStream fileInputHandle = new FileInputStream(f);
++
++    Class<?> clazz = Class.forName("LZMA.LzmaInputStream");
++    Constructor<?> constructor = clazz.getDeclaredConstructor(new Class[] { 
++      InputStream.class });
++
++    InputStream inputHandle = (InputStream)constructor.newInstance(new Object[] { 
++      fileInputHandle });
++
++    OutputStream outputHandle = new FileOutputStream(out);
++
++    byte[] buffer = new byte[16384];
++
++    int ret = inputHandle.read(buffer);
++    while (ret >= 1) {
++      outputHandle.write(buffer, 0, ret);
++      ret = inputHandle.read(buffer);
++    }
++
++    inputHandle.close();
++    outputHandle.close();
++
++    outputHandle = null;
++    inputHandle = null;
++
++    f.delete();
++  }
++
++  protected void extractPack(String in, String out)
++    throws Exception
++  {
++    File f = new File(in);
++    if (!f.exists()) return;
++
++    FileOutputStream fostream = new FileOutputStream(out);
++    JarOutputStream jostream = new JarOutputStream(fostream);
++
++    Pack200.Unpacker unpacker = Pack200.newUnpacker();
++    unpacker.unpack(f, jostream);
++    jostream.close();
++
++    f.delete();
++  }
++
++  protected void extractJars(String path)
++    throws Exception
++  {
++    state = 5;
++
++    float increment = 10.0F / urlList.length;
++
++    for (int i = 0; i < urlList.length; i++) {
++      percentage = (55 + (int)(increment * (i + 1)));
++      String filename = getFileName(urlList[i]);
++
++      if (filename.endsWith(".pack.lzma")) {
++        subtaskMessage = ("Extracting: " + filename + " to " + filename.replaceAll(".lzma", ""));
++        extractLZMA(path + filename, path + filename.replaceAll(".lzma", ""));
++
++        subtaskMessage = ("Extracting: " + filename.replaceAll(".lzma", "") + " to " + filename.replaceAll(".pack.lzma", ""));
++        extractPack(path + filename.replaceAll(".lzma", ""), path + filename.replaceAll(".pack.lzma", ""));
++      } else if (filename.endsWith(".pack")) {
++        subtaskMessage = ("Extracting: " + filename + " to " + filename.replace(".pack", ""));
++        extractPack(path + filename, path + filename.replace(".pack", ""));
++      } else if (filename.endsWith(".lzma")) {
++        subtaskMessage = ("Extracting: " + filename + " to " + filename.replace(".lzma", ""));
++        extractLZMA(path + filename, path + filename.replace(".lzma", ""));
++      }
++    }
++  }
++
++  protected void extractNatives(String path) throws Exception
++  {
++    state = 5;
++
++    int initialPercentage = percentage;
++
++    String nativeJar = getJarName(urlList[(urlList.length - 1)]);
++
++    Certificate[] certificate = Launcher.class.getProtectionDomain().getCodeSource().getCertificates();
++
++    if (certificate == null) {
++      URL location = Launcher.class.getProtectionDomain().getCodeSource().getLocation();
++
++      JarURLConnection jurl = (JarURLConnection)new URL("jar:" + location.toString() + "!/net/minecraft/Launcher.class").openConnection();
++      jurl.setDefaultUseCaches(true);
++      try {
++        certificate = jurl.getCertificates();
++      }
++      catch (Exception localException)
++      {
++      }
++    }
++    File nativeFolder = new File(path + "natives");
++    if (!nativeFolder.exists()) {
++      nativeFolder.mkdir();
++    }
++
++    File file = new File(path + nativeJar);
++    if (!file.exists()) return;
++    JarFile jarFile = new JarFile(file, true);
++    Enumeration<?> entities = jarFile.entries();
++
++    totalSizeExtract = 0;
++
++    while (entities.hasMoreElements()) {
++      JarEntry entry = (JarEntry)entities.nextElement();
++
++      if ((entry.isDirectory()) || (entry.getName().indexOf('/') != -1)) {
++        continue;
++      }
++      totalSizeExtract = (int)(totalSizeExtract + entry.getSize());
++    }
++
++    currentSizeExtract = 0;
++
++    entities = jarFile.entries();
++
++    while (entities.hasMoreElements()) {
++      JarEntry entry = (JarEntry)entities.nextElement();
++
++      if ((entry.isDirectory()) || (entry.getName().indexOf('/') != -1))
++      {
++        continue;
++      }
++      File f = new File(path + "natives" + File.separator + entry.getName());
++      if ((f.exists()) && 
++        (!f.delete()))
++      {
++        continue;
++      }
++
++      InputStream in = jarFile.getInputStream(jarFile.getEntry(entry.getName()));
++      OutputStream out = new FileOutputStream(path + "natives" + File.separator + entry.getName());
++
++      byte[] buffer = new byte[65536];
++      int bufferSize;
++      while ((bufferSize = in.read(buffer, 0, buffer.length)) != -1)
++      {
++        out.write(buffer, 0, bufferSize);
++        currentSizeExtract += bufferSize;
++
++        percentage = (initialPercentage + currentSizeExtract * 20 / totalSizeExtract);
++        subtaskMessage = ("Extracting: " + entry.getName() + " " + currentSizeExtract * 100 / totalSizeExtract + "%");
++      }
++
++      validateCertificateChain(certificate, entry.getCertificates());
++
++      in.close();
++      out.close();
++    }
++    subtaskMessage = "";
++
++    jarFile.close();
++
++    File f = new File(path + nativeJar);
++    f.delete();
++  }
++
++  protected static void validateCertificateChain(Certificate[] ownCerts, Certificate[] native_certs)
++    throws Exception
++  {
++    if (ownCerts == null) return;
++    if (native_certs == null) throw new Exception("Unable to validate certificate chain. Native entry did not have a certificate chain at all");
++
++    if (ownCerts.length != native_certs.length) throw new Exception("Unable to validate certificate chain. Chain differs in length [" + ownCerts.length + " vs " + native_certs.length + "]");
++
++    for (int i = 0; i < ownCerts.length; i++)
++      if (!ownCerts[i].equals(native_certs[i]))
++        throw new Exception("Certificate mismatch: " + ownCerts[i] + " != " + native_certs[i]);
++  }
++
++  protected String getJarName(URL url)
++  {
++    String fileName = url.getFile();
++
++    if (fileName.contains("?")) {
++      fileName = fileName.substring(0, fileName.indexOf("?"));
++    }
++    if (fileName.endsWith(".pack.lzma"))
++      fileName = fileName.replaceAll(".pack.lzma", "");
++    else if (fileName.endsWith(".pack"))
++      fileName = fileName.replaceAll(".pack", "");
++    else if (fileName.endsWith(".lzma")) {
++      fileName = fileName.replaceAll(".lzma", "");
++    }
++
++    return fileName.substring(fileName.lastIndexOf('/') + 1);
++  }
++
++  protected String getFileName(URL url) {
++    String fileName = url.getFile();
++    if (fileName.contains("?")) {
++      fileName = fileName.substring(0, fileName.indexOf("?"));
++    }
++    return fileName.substring(fileName.lastIndexOf('/') + 1);
++  }
++
++  protected void fatalErrorOccured(String error, Exception e) {
++    e.printStackTrace();
++    fatalError = true;
++    fatalErrorDescription = ("Fatal error occured (" + state + "): " + error);
++    System.out.println(fatalErrorDescription);
++
++    System.out.println(generateStacktrace(e));
++  }
++
++  public boolean canPlayOffline()
++  {
++    try
++    {
++      String path = (String)AccessController.doPrivileged(new PrivilegedExceptionAction<Object>() {
++        public Object run() throws Exception {
++          return Util.getWorkingDirectory() + File.separator + "bin" + File.separator;
++        }
++      });
++      File dir = new File(path);
++      if (!dir.exists()) return false;
++
++      dir = new File(dir, "version");
++      if (!dir.exists()) return false;
++
++      if (dir.exists()) {
++        String version = readVersionFile(dir);
++        if ((version != null) && (version.length() > 0))
++          return true;
++      }
++    }
++    catch (Exception e) {
++      e.printStackTrace();
++      return false;
++    }
++    return false;
++  }
++}
+\ No newline at end of file
+diff --git a/src/net/minecraft/Launcher.java b/src/net/minecraft/Launcher.java
+new file mode 100644
+index 0000000..3ca3272
+--- /dev/null
++++ b/src/net/minecraft/Launcher.java
+@@ -0,0 +1,294 @@
++package net.minecraft;
++
++import java.applet.Applet;
++import java.applet.AppletStub;
++import java.awt.BorderLayout;
++import java.awt.Color;
++import java.awt.Font;
++import java.awt.FontMetrics;
++import java.awt.Graphics;
++import java.awt.Image;
++import java.awt.event.MouseEvent;
++import java.awt.event.MouseListener;
++import java.awt.image.VolatileImage;
++import java.io.IOException;
++import java.net.MalformedURLException;
++import java.net.URL;
++import java.util.HashMap;
++import java.util.Map;
++import javax.imageio.ImageIO;
++
++public class Launcher extends Applet
++  implements Runnable, AppletStub, MouseListener
++{
++  private static final long serialVersionUID = 1L;
++  public Map<String, String> customParameters = new HashMap<String, String>();
++  private GameUpdater gameUpdater;
++  private boolean gameUpdaterStarted = false;
++  private Applet applet;
++  private Image bgImage;
++  private boolean active = false;
++  private int context = 0;
++  private boolean hasMouseListener = false;
++  private VolatileImage img;
++
++  public boolean isActive()
++  {
++    if (context == 0) {
++      context = -1;
++      try {
++        if (getAppletContext() != null) context = 1; 
++      }
++      catch (Exception localException) {
++      }
++    }
++    if (context == -1) return active;
++    return super.isActive();
++  }
++
++  public void init(String userName, String latestVersion, String downloadTicket, String sessionId)
++  {
++    try {
++      bgImage = ImageIO.read(LoginForm.class.getResource("dirt.png")).getScaledInstance(32, 32, 16);
++    } catch (IOException e) {
++      e.printStackTrace();
++    }
++
++    customParameters.put("username", userName);
++    customParameters.put("sessionid", sessionId);
++    gameUpdater = new GameUpdater(latestVersion, "minecraft.jar?user=" + userName + "&ticket=" + downloadTicket);
++  }
++
++  public boolean canPlayOffline() {
++    return gameUpdater.canPlayOffline();
++  }
++
++  public void init() {
++    if (applet != null) {
++      applet.init();
++      return;
++    }
++    init(getParameter("userName"), getParameter("latestVersion"), getParameter("downloadTicket"), getParameter("sessionId"));
++  }
++
++  public void start() {
++    if (applet != null) {
++      applet.start();
++      return;
++    }
++    if (gameUpdaterStarted) return;
++
++    Thread t = new Thread() {
++      public void run() {
++        gameUpdater.run();
++        try {
++          if (!gameUpdater.fatalError)
++            replace(gameUpdater.createApplet());
++        }
++        catch (ClassNotFoundException e)
++        {
++          e.printStackTrace();
++        } catch (InstantiationException e) {
++          e.printStackTrace();
++        } catch (IllegalAccessException e) {
++          e.printStackTrace();
++        }
++      }
++    };
++    t.setDaemon(true);
++    t.start();
++
++    t = new Thread() {
++      public void run() {
++        while (applet == null) {
++          repaint();
++          try {
++            Thread.sleep(10L);
++          } catch (InterruptedException e) {
++            e.printStackTrace();
++          }
++        }
++      }
++    };
++    t.setDaemon(true);
++    t.start();
++
++    gameUpdaterStarted = true;
++  }
++
++  public void stop() {
++    if (applet != null) {
++      active = false;
++      applet.stop();
++      return;
++    }
++  }
++
++  public void destroy() {
++    if (applet != null) {
++      applet.destroy();
++      return;
++    }
++  }
++
++  public void replace(Applet applet) {
++    this.applet = applet;
++    applet.setStub(this);
++    applet.setSize(getWidth(), getHeight());
++
++    setLayout(new BorderLayout());
++    add(applet, "Center");
++
++    applet.init();
++    active = true;
++    applet.start();
++    validate();
++  }
++
++  public void update(Graphics g)
++  {
++    paint(g);
++  }
++
++  public void paint(Graphics g2) {
++    if (applet != null) return;
++
++    int w = getWidth() / 2;
++    int h = getHeight() / 2;
++    if ((img == null) || (img.getWidth() != w) || (img.getHeight() != h)) {
++      img = createVolatileImage(w, h);
++    }
++
++    Graphics g = img.getGraphics();
++    for (int x = 0; x <= w / 32; x++) {
++      for (int y = 0; y <= h / 32; y++)
++        g.drawImage(bgImage, x * 32, y * 32, null);
++    }
++    if (gameUpdater.pauseAskUpdate) {
++      if (!hasMouseListener) {
++        hasMouseListener = true;
++        addMouseListener(this);
++      }
++      g.setColor(Color.LIGHT_GRAY);
++      String msg = "New update available";
++      g.setFont(new Font(null, 1, 20));
++      FontMetrics fm = g.getFontMetrics();
++      g.drawString(msg, w / 2 - fm.stringWidth(msg) / 2, h / 2 - fm.getHeight() * 2);
++
++      g.setFont(new Font(null, 0, 12));
++      fm = g.getFontMetrics();
++
++      g.fill3DRect(w / 2 - 56 - 8, h / 2, 56, 20, true);
++      g.fill3DRect(w / 2 + 8, h / 2, 56, 20, true);
++
++      msg = "Would you like to update?";
++      g.drawString(msg, w / 2 - fm.stringWidth(msg) / 2, h / 2 - 8);
++
++      g.setColor(Color.BLACK);
++      msg = "Yes";
++      g.drawString(msg, w / 2 - 56 - 8 - fm.stringWidth(msg) / 2 + 28, h / 2 + 14);
++      msg = "Not now";
++      g.drawString(msg, w / 2 + 8 - fm.stringWidth(msg) / 2 + 28, h / 2 + 14);
++    }
++    else
++    {
++      g.setColor(Color.LIGHT_GRAY);
++
++      String msg = "Updating Minecraft";
++      if (gameUpdater.fatalError) {
++        msg = "Failed to launch";
++      }
++
++      g.setFont(new Font(null, 1, 20));
++      FontMetrics fm = g.getFontMetrics();
++      g.drawString(msg, w / 2 - fm.stringWidth(msg) / 2, h / 2 - fm.getHeight() * 2);
++
++      g.setFont(new Font(null, 0, 12));
++      fm = g.getFontMetrics();
++      msg = gameUpdater.getDescriptionForState();
++      if (gameUpdater.fatalError) {
++        msg = gameUpdater.fatalErrorDescription;
++      }
++
++      g.drawString(msg, w / 2 - fm.stringWidth(msg) / 2, h / 2 + fm.getHeight() * 1);
++      msg = gameUpdater.subtaskMessage;
++      g.drawString(msg, w / 2 - fm.stringWidth(msg) / 2, h / 2 + fm.getHeight() * 2);
++
++      if (!gameUpdater.fatalError) {
++        g.setColor(Color.black);
++        g.fillRect(64, h - 64, w - 128 + 1, 5);
++        g.setColor(new Color(32768));
++        g.fillRect(64, h - 64, gameUpdater.percentage * (w - 128) / 100, 4);
++        g.setColor(new Color(2138144));
++        g.fillRect(65, h - 64 + 1, gameUpdater.percentage * (w - 128) / 100 - 2, 1);
++      }
++    }
++
++    g.dispose();
++
++    g2.drawImage(img, 0, 0, w * 2, h * 2, null);
++  }
++
++  public void run() {
++  }
++
++  public String getParameter(String name) {
++    String custom = (String)customParameters.get(name);
++    if (custom != null) return custom; try
++    {
++      return super.getParameter(name);
++    } catch (Exception e) {
++      customParameters.put(name, null);
++    }return null;
++  }
++
++  public void appletResize(int width, int height)
++  {
++  }
++
++  public URL getDocumentBase() {
++    try {
++      return new URL("http://www.minecraft.net/game/");
++    } catch (MalformedURLException e) {
++      e.printStackTrace();
++    }
++    return null;
++  }
++
++  public void mouseClicked(MouseEvent arg0) {
++  }
++
++  public void mouseEntered(MouseEvent arg0) {
++  }
++
++  public void mouseExited(MouseEvent arg0) {
++  }
++
++  public void mousePressed(MouseEvent me) {
++    int x = me.getX() / 2;
++    int y = me.getY() / 2;
++    int w = getWidth() / 2;
++    int h = getHeight() / 2;
++
++    if (contains(x, y, w / 2 - 56 - 8, h / 2, 56, 20)) {
++      removeMouseListener(this);
++      gameUpdater.shouldUpdate = true;
++      gameUpdater.pauseAskUpdate = false;
++      hasMouseListener = false;
++    }
++    if (contains(x, y, w / 2 + 8, h / 2, 56, 20)) {
++      removeMouseListener(this);
++      gameUpdater.shouldUpdate = false;
++      gameUpdater.pauseAskUpdate = false;
++      hasMouseListener = false;
++    }
++  }
++
++  private boolean contains(int x, int y, int xx, int yy, int w, int h) {
++    return (x >= xx) && (y >= yy) && (x < xx + w) && (y < yy + h);
++  }
++
++  public void mouseReleased(MouseEvent arg0)
++  {
++  }
++}
+\ No newline at end of file
+diff --git a/src/net/minecraft/LauncherFrame.java b/src/net/minecraft/LauncherFrame.java
+new file mode 100644
+index 0000000..a484f81
+--- /dev/null
++++ b/src/net/minecraft/LauncherFrame.java
+@@ -0,0 +1,182 @@
++package net.minecraft;
++
++import java.awt.BorderLayout;
++import java.awt.Color;
++import java.awt.Dimension;
++import java.awt.Frame;
++import java.awt.event.WindowAdapter;
++import java.awt.event.WindowEvent;
++import java.io.IOException;
++import java.net.URLEncoder;
++import java.util.HashMap;
++import java.util.Map;
++import javax.imageio.ImageIO;
++import javax.swing.JPanel;
++import javax.swing.UIManager;
++
++public class LauncherFrame extends Frame
++{
++  public static final int VERSION = 13;
++  private static final long serialVersionUID = 1L;
++  public Map<String, String> customParameters = new HashMap<String, String>();
++  public Launcher launcher;
++  public LoginForm loginForm;
++
++  public LauncherFrame()
++  {
++    super("Minecraft Launcher");
++
++    setBackground(Color.BLACK);
++    loginForm = new LoginForm(this);
++    JPanel p = new JPanel();
++    p.setLayout(new BorderLayout());
++    p.add(loginForm, "Center");
++
++    p.setPreferredSize(new Dimension(854, 480));
++
++    setLayout(new BorderLayout());
++    add(p, "Center");
++
++    pack();
++    setLocationRelativeTo(null);
++    try
++    {
++      setIconImage(ImageIO.read(LauncherFrame.class.getResource("favicon.png")));
++    } catch (IOException e1) {
++      e1.printStackTrace();
++    }
++
++    addWindowListener(new WindowAdapter() {
++      public void windowClosing(WindowEvent arg0) {
++        new Thread() {
++          public void run() {
++            try {
++              Thread.sleep(30000L);
++            } catch (InterruptedException e) {
++              e.printStackTrace();
++            }
++            System.out.println("FORCING EXIT!");
++            System.exit(0);
++          }
++        }
++        .start();
++        if (launcher != null) {
++          launcher.stop();
++          launcher.destroy();
++        }
++        System.exit(0);
++      } } );
++  }
++
++  public void playCached(String userName) {
++    try {
++      if ((userName == null) || (userName.length() <= 0)) {
++        userName = "Player";
++      }
++      launcher = new Launcher();
++      launcher.customParameters.putAll(customParameters);
++      launcher.customParameters.put("userName", userName);
++      launcher.init();
++      removeAll();
++      add(launcher, "Center");
++      validate();
++      launcher.start();
++      loginForm = null;
++      setTitle("Minecraft");
++    } catch (Exception e) {
++      e.printStackTrace();
++      showError(e.toString());
++    }
++  }
++
++  public void login(String userName, String password) {
++    try {
++      String parameters = "user=" + URLEncoder.encode(userName, "UTF-8") + "&password=" + URLEncoder.encode(password, "UTF-8") + "&version=" + 13;
++      String result = Util.excutePost("https://login.minecraft.net/", parameters);
++      if (result == null) {
++        showError("Can't connect to minecraft.net");
++        loginForm.setNoNetwork();
++        return;
++      }
++      if (!result.contains(":")) {
++        if (result.trim().equals("Bad login")) {
++          showError("Login failed");
++        } else if (result.trim().equals("Old version")) {
++          loginForm.setOutdated();
++          showError("Outdated launcher");
++        } else {
++          showError(result);
++        }
++        loginForm.setNoNetwork();
++        return;
++      }
++      String[] values = result.split(":");
++
++      launcher = new Launcher();
++      launcher.customParameters.putAll(customParameters);
++      launcher.customParameters.put("userName", values[2].trim());
++      launcher.customParameters.put("latestVersion", values[0].trim());
++      launcher.customParameters.put("downloadTicket", values[1].trim());
++      launcher.customParameters.put("sessionId", values[3].trim());
++      launcher.init();
++
++      removeAll();
++      add(launcher, "Center");
++      validate();
++      launcher.start();
++      loginForm.loginOk();
++      loginForm = null;
++      setTitle("Minecraft");
++    } catch (Exception e) {
++      e.printStackTrace();
++      showError(e.toString());
++      loginForm.setNoNetwork();
++    }
++  }
++
++  private void showError(String error) {
++    removeAll();
++    add(loginForm);
++    loginForm.setError(error);
++    validate();
++  }
++
++  public boolean canPlayOffline(String userName) {
++    Launcher launcher = new Launcher();
++    launcher.customParameters.putAll(customParameters);
++    launcher.init(userName, null, null, null);
++    return launcher.canPlayOffline();
++  }
++
++  public static void main(String[] args) {
++    try {
++      UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
++    }
++    catch (Exception localException) {
++    }
++    LauncherFrame launcherFrame = new LauncherFrame();
++    launcherFrame.setVisible(true);
++    launcherFrame.customParameters.put("stand-alone", "true");
++    
++    if (args.length >= 3) {
++      String ip = args[2];
++      String port = "25565";
++      if (ip.contains(":")) {
++        String[] parts = ip.split(":");
++        ip = parts[0];
++        port = parts[1];
++      }
++
++      launcherFrame.customParameters.put("server", ip);
++      launcherFrame.customParameters.put("port", port);
++    }
++
++    if (args.length >= 1) {
++      launcherFrame.loginForm.userName.setText(args[0]);
++      if (args.length >= 2) {
++        launcherFrame.loginForm.password.setText(args[1]);
++        launcherFrame.loginForm.doLogin();
++      }
++    }
++  }
++}
+diff --git a/src/net/minecraft/LoginForm.java b/src/net/minecraft/LoginForm.java
+new file mode 100644
+index 0000000..e2b39e7
+--- /dev/null
++++ b/src/net/minecraft/LoginForm.java
+@@ -0,0 +1,526 @@
++package net.minecraft;
++
++import java.awt.BorderLayout;
++import java.awt.Color;
++import java.awt.Component;
++import java.awt.Cursor;
++import java.awt.Dimension;
++import java.awt.Font;
++import java.awt.FontMetrics;
++import java.awt.Graphics;
++import java.awt.GridBagLayout;
++import java.awt.GridLayout;
++import java.awt.event.ActionEvent;
++import java.awt.event.ActionListener;
++import java.awt.event.MouseAdapter;
++import java.awt.event.MouseEvent;
++import java.io.DataInputStream;
++import java.io.DataOutputStream;
++import java.io.File;
++import java.io.FileInputStream;
++import java.io.FileOutputStream;
++import java.net.URL;
++import java.util.Random;
++import javax.crypto.Cipher;
++import javax.crypto.CipherInputStream;
++import javax.crypto.CipherOutputStream;
++import javax.crypto.SecretKey;
++import javax.crypto.SecretKeyFactory;
++import javax.crypto.spec.PBEKeySpec;
++import javax.crypto.spec.PBEParameterSpec;
++import javax.swing.JLabel;
++import javax.swing.JPanel;
++import javax.swing.JPasswordField;
++import javax.swing.JScrollPane;
++import javax.swing.JTextField;
++import javax.swing.JTextPane;
++import javax.swing.JComboBox;
++import javax.swing.border.MatteBorder;
++import javax.swing.event.HyperlinkEvent;
++import javax.swing.event.HyperlinkListener;
++
++//---------------------------------
++/*import java.io.FilenameFilter;
++import java.util.regex.Pattern;*/
++import java.util.Comparator;
++import java.util.Arrays;
++//---------------------------------
++
++public class LoginForm extends TransparentPanel
++{
++  //private static final int PANEL_SIZE = 100;
++  private static final long serialVersionUID = 1L;
++  private static final Color LINK_COLOR = new Color(8421631);
++  public static String mcdir = null;;
++
++  public JTextField userName = new JTextField(20);
++  public JPasswordField password = new JPasswordField(20);
++  public JComboBox minecraftVersion = new JComboBox();
++  private TransparentCheckbox rememberBox = new TransparentCheckbox("Remember password");
++  private TransparentButton launchButton = new TransparentButton("Login");
++  private TransparentButton optionsButton = new TransparentButton("Options");
++  private TransparentButton retryButton = new TransparentButton("Try again");
++  private TransparentButton offlineButton = new TransparentButton("Play offline");
++  private TransparentLabel errorLabel = new TransparentLabel("", 0);
++  private LauncherFrame launcherFrame;
++  private boolean outdated = false;
++  private JScrollPane scrollPane;
++  
++/*  class DirFilter implements FilenameFilter {
++	  private Pattern pattern;
++
++	  public DirFilter(String regex) {
++		  pattern = Pattern.compile(regex);
++	  }
++
++	  public boolean accept(File dir, String name) {
++		  return pattern.matcher(new File(name).getName()).matches();
++	  }
++  }*/
++  
++  class AlphabeticComparator implements Comparator<Object> {
++	  public int compare(Object o1, Object o2) {
++	    String s1 = (String) o1;
++	    String s2 = (String) o2;
++	    return s1.toLowerCase().compareTo(s2.toLowerCase());
++	  }
++  }
++  
++  public void showFiles(){
++	    String myPath = System.getProperty("user.home");
++	    File folder = new File(myPath + "/Desktop/Multi-Minecraft/");
++	    String[] list;
++	    list = folder.list();
++	    Arrays.sort(list, new AlphabeticComparator());
++	    for (int i = 0; i < list.length; i++) {
++	    	minecraftVersion.addItem(list[i]);
++	    }
++  }
++  
++  public LoginForm(final LauncherFrame launcherFrame)
++  {
++    this.launcherFrame = launcherFrame;
++    
++    BorderLayout gbl = new BorderLayout();
++    setLayout(gbl);
++
++    add(buildMainLoginPanel(), "Center");
++    showFiles();
++    
++    ActionListener actionListener = new ActionListener() {
++        public void actionPerformed(ActionEvent actionEvent) {
++        	mcdir = minecraftVersion.getSelectedItem().toString();
++        	readUsername();
++        }
++      };
++    
++    minecraftVersion.addActionListener(actionListener);
++    
++    ActionListener al = new ActionListener() {
++      public void actionPerformed(ActionEvent arg0) {
++        doLogin();
++      }
++    };
++    
++    userName.addActionListener(al);
++    password.addActionListener(al);
++    
++    retryButton.addActionListener(new ActionListener() {
++      public void actionPerformed(ActionEvent ae) {
++        errorLabel.setText("");
++        removeAll();
++        add(LoginForm.this.buildMainLoginPanel(), "Center");
++        validate();
++      }
++    });
++    offlineButton.addActionListener(new ActionListener() {
++      public void actionPerformed(ActionEvent ae) {
++        launcherFrame.playCached(userName.getText());
++      }
++    });
++    launchButton.addActionListener(al);
++
++    optionsButton.addActionListener(new ActionListener() {
++      public void actionPerformed(ActionEvent ae) {
++        new OptionsPanel(launcherFrame).setVisible(true);
++      }
++    });
++  }
++
++  public void doLogin() {
++    setLoggingIn();
++    new Thread() {
++      public void run() {
++        try {
++          launcherFrame.login(userName.getText(), new String(password.getPassword()));
++        } catch (Exception e) {
++          setError(e.toString());
++        }
++      }
++    }
++    .start();
++  }
++
++  private void readUsername() {
++	try {    	
++      File lastLogin = new File(Util.getWorkingDirectory("/Desktop/Multi-Minecraft/" + mcdir + "/.minecraft"), "lastlogin");
++
++      Cipher cipher = getCipher(2, "passwordfile");
++      DataInputStream dis;
++      if (cipher != null)
++        dis = new DataInputStream(new CipherInputStream(new FileInputStream(lastLogin), cipher));
++      else {
++        dis = new DataInputStream(new FileInputStream(lastLogin));
++      }
++      userName.setText(dis.readUTF());
++      password.setText(dis.readUTF());
++      rememberBox.setSelected(password.getPassword().length > 0);
++      dis.close();
++    } catch (Exception e) {
++      e.printStackTrace();
++    }
++  }
++
++  private void writeUsername() {
++    try {
++      File lastLogin = new File(Util.getWorkingDirectory("/Desktop/Multi-Minecraft/" + LoginForm.mcdir + "/.minecraft"), "lastlogin");
++
++      Cipher cipher = getCipher(1, "passwordfile");
++      DataOutputStream dos;
++      if (cipher != null)
++        dos = new DataOutputStream(new CipherOutputStream(new FileOutputStream(lastLogin), cipher));
++      else {
++        dos = new DataOutputStream(new FileOutputStream(lastLogin));
++      }
++      dos.writeUTF(userName.getText());
++      dos.writeUTF(rememberBox.isSelected() ? new String(password.getPassword()) : "");
++      dos.close();
++    } catch (Exception e) {
++      e.printStackTrace();
++    }
++  }
++
++  private Cipher getCipher(int mode, String password) throws Exception {
++    Random random = new Random(43287234L);
++    byte[] salt = new byte[8];
++    random.nextBytes(salt);
++    PBEParameterSpec pbeParamSpec = new PBEParameterSpec(salt, 5);
++
++    SecretKey pbeKey = SecretKeyFactory.getInstance("PBEWithMD5AndDES").generateSecret(new PBEKeySpec(password.toCharArray()));
++    Cipher cipher = Cipher.getInstance("PBEWithMD5AndDES");
++    cipher.init(mode, pbeKey, pbeParamSpec);
++    return cipher;
++  }
++
++  private JScrollPane getUpdateNews()
++  {
++    if (scrollPane != null) return scrollPane;
++    try
++    {
++      final JTextPane editorPane = new JTextPane()
++      {
++        private static final long serialVersionUID = 1L;
++      };
++      editorPane.setText("<html><body><font color=\"#808080\"><br><br><br><br><br><br><br><center>Loading update news..</center></font></body></html>");
++      editorPane.addHyperlinkListener(new HyperlinkListener() {
++        public void hyperlinkUpdate(HyperlinkEvent he) {
++          if (he.getEventType() == HyperlinkEvent.EventType.ACTIVATED)
++            try {
++              Util.openLink(he.getURL().toURI());
++            } catch (Exception e) {
++              e.printStackTrace();
++            }
++        }
++      });
++      new Thread() {
++        public void run() {
++          try {
++            editorPane.setPage(new URL("http://mcupdate.tumblr.com/"));
++          } catch (Exception e) {
++            e.printStackTrace();
++            editorPane.setText("<html><body><font color=\"#808080\"><br><br><br><br><br><br><br><center>Failed to update news<br>" + e.toString() + "</center></font></body></html>");
++          }
++        }
++      }
++      .start();
++      editorPane.setBackground(Color.DARK_GRAY);
++      editorPane.setEditable(false);
++      scrollPane = new JScrollPane(editorPane);
++      scrollPane.setBorder(null);
++      editorPane.setMargin(null);
++
++      scrollPane.setBorder(new MatteBorder(0, 0, 2, 0, Color.BLACK));
++    } catch (Exception e2) {
++      e2.printStackTrace();
++    }
++
++    return scrollPane;
++  }
++
++  private JPanel buildMainLoginPanel() {
++    JPanel p = new TransparentPanel(new BorderLayout());
++    p.add(getUpdateNews(), "Center");
++
++    JPanel southPanel = new TexturedPanel();
++    southPanel.setLayout(new BorderLayout());
++    southPanel.add(new LogoPanel(), "West");
++    southPanel.add(new TransparentPanel(), "Center");
++    southPanel.add(center(buildLoginPanel()), "East");
++    southPanel.setPreferredSize(new Dimension(100, 150));
++
++    p.add(southPanel, "South");
++    return p;
++  }
++
++  private JPanel buildLoginPanel() {
++    TransparentPanel panel = new TransparentPanel();
++    panel.setInsets(4, 0, 4, 0);
++
++    BorderLayout layout = new BorderLayout();
++    layout.setHgap(0);
++    layout.setVgap(8);
++    panel.setLayout(layout);
++
++    GridLayout gl1 = new GridLayout(0, 1);
++    gl1.setVgap(2);
++    GridLayout gl2 = new GridLayout(0, 1);
++    gl2.setVgap(2);
++    GridLayout gl3 = new GridLayout(0, 1);
++    gl3.setVgap(2);
++    GridLayout gl4 = new GridLayout(0, 1);
++    gl4.setVgap(2);
++
++    TransparentPanel titles = new TransparentPanel(gl1);
++    TransparentPanel values = new TransparentPanel(gl2);
++
++    titles.add(new TransparentLabel("Username:", 4));
++    titles.add(new TransparentLabel("Password:", 4));
++    titles.add(new TransparentLabel("", 4));
++    titles.add(new TransparentLabel("MC Version:", 4));
++
++    values.add(userName);
++    values.add(password);
++    values.add(rememberBox);
++    values.add(minecraftVersion);
++
++    panel.add(titles, "West");
++    panel.add(values, "Center");
++
++    TransparentPanel loginPanel = new TransparentPanel(new BorderLayout());
++
++    TransparentPanel third = new TransparentPanel(gl3);
++    titles.setInsets(0, 0, 0, 4);
++    third.setInsets(0, 10, 0, 10);
++
++    third.add(optionsButton);
++    third.add(launchButton);
++    try
++    {
++      if (outdated) {
++        TransparentLabel accountLink = getUpdateLink();
++        third.add(accountLink);
++      }
++      else
++      {
++        TransparentLabel accountLink = new TransparentLabel("Need account?") {
++          private static final long serialVersionUID = 0L;
++
++          public void paint(Graphics g) { super.paint(g);
++
++            int x = 0;
++            int y = 0;
++
++            FontMetrics fm = g.getFontMetrics();
++            int width = fm.stringWidth(getText());
++            int height = fm.getHeight();
++
++            if (getAlignmentX() == 2.0F) x = 0;
++            else if (getAlignmentX() == 0.0F) x = getBounds().width / 2 - width / 2;
++            else if (getAlignmentX() == 4.0F) x = getBounds().width - width;
++            y = getBounds().height / 2 + height / 2 - 1;
++
++            g.drawLine(x + 2, y, x + width - 2, y); }
++
++          public void update(Graphics g)
++          {
++            paint(g);
++          }
++        };
++        accountLink.setCursor(Cursor.getPredefinedCursor(12));
++        accountLink.addMouseListener(new MouseAdapter() {
++          public void mousePressed(MouseEvent arg0) {
++            try {
++              Util.openLink(new URL("http://www.minecraft.net/register.jsp").toURI());
++            } catch (Exception e) {
++              e.printStackTrace();
++            }
++          }
++        });
++        accountLink.setForeground(LINK_COLOR);
++        third.add(accountLink);
++      }
++
++    }
++    catch (Error localError)
++    {
++    }
++
++    loginPanel.add(third, "Center");
++    panel.add(loginPanel, "East");
++
++    errorLabel.setFont(new Font(null, 2, 16));
++    errorLabel.setForeground(new Color(16728128));
++    errorLabel.setText("");
++    panel.add(errorLabel, "North");
++
++    return panel;
++  }
++
++  private TransparentLabel getUpdateLink() {
++    TransparentLabel accountLink = new TransparentLabel("You need to update the launcher!") {
++      private static final long serialVersionUID = 0L;
++
++      public void paint(Graphics g) { super.paint(g);
++
++        int x = 0;
++        int y = 0;
++
++        FontMetrics fm = g.getFontMetrics();
++        int width = fm.stringWidth(getText());
++        int height = fm.getHeight();
++
++        if (getAlignmentX() == 2.0F) x = 0;
++        else if (getAlignmentX() == 0.0F) x = getBounds().width / 2 - width / 2;
++        else if (getAlignmentX() == 4.0F) x = getBounds().width - width;
++        y = getBounds().height / 2 + height / 2 - 1;
++
++        g.drawLine(x + 2, y, x + width - 2, y); }
++
++      public void update(Graphics g)
++      {
++        paint(g);
++      }
++    };
++    accountLink.setCursor(Cursor.getPredefinedCursor(12));
++    accountLink.addMouseListener(new MouseAdapter() {
++      public void mousePressed(MouseEvent arg0) {
++        try {
++          Util.openLink(new URL("http://www.minecraft.net/download.jsp").toURI());
++        } catch (Exception e) {
++          e.printStackTrace();
++        }
++      }
++    });
++    accountLink.setForeground(LINK_COLOR);
++    return accountLink;
++  }
++
++  private JPanel buildMainOfflinePanel() {
++    JPanel p = new TransparentPanel(new BorderLayout());
++    p.add(getUpdateNews(), "Center");
++
++    JPanel southPanel = new TexturedPanel();
++    southPanel.setLayout(new BorderLayout());
++    southPanel.add(new LogoPanel(), "West");
++    southPanel.add(new TransparentPanel(), "Center");
++    southPanel.add(center(buildOfflinePanel()), "East");
++    southPanel.setPreferredSize(new Dimension(100, 100));
++
++    p.add(southPanel, "South");
++    return p;
++  }
++
++  private Component center(Component c) {
++    TransparentPanel tp = new TransparentPanel(new GridBagLayout());
++    tp.add(c);
++    return tp;
++  }
++
++  private TransparentPanel buildOfflinePanel()
++  {
++    TransparentPanel panel = new TransparentPanel();
++    panel.setInsets(0, 0, 0, 20);
++
++    BorderLayout layout = new BorderLayout();
++    panel.setLayout(layout);
++
++    TransparentPanel loginPanel = new TransparentPanel(new BorderLayout());
++
++    GridLayout gl = new GridLayout(0, 1);
++    gl.setVgap(2);
++    TransparentPanel pp = new TransparentPanel(gl);
++    pp.setInsets(0, 8, 0, 0);
++
++    pp.add(retryButton);
++    pp.add(offlineButton);
++
++    loginPanel.add(pp, "East");
++
++    boolean canPlayOffline = launcherFrame.canPlayOffline(userName.getText());
++    offlineButton.setEnabled(canPlayOffline);
++    if (!canPlayOffline) {
++      loginPanel.add(new TransparentLabel("(Not downloaded)", 4), "South");
++    }
++    panel.add(loginPanel, "Center");
++
++    TransparentPanel p2 = new TransparentPanel(new GridLayout(0, 1));
++    errorLabel.setFont(new Font(null, 2, 16));
++    errorLabel.setForeground(new Color(16728128));
++    p2.add(errorLabel);
++    if (outdated) {
++      TransparentLabel accountLink = getUpdateLink();
++      p2.add(accountLink);
++    }
++
++    loginPanel.add(p2, "Center");
++
++    return panel;
++  }
++
++  public void setError(String errorMessage) {
++    removeAll();
++    add(buildMainLoginPanel(), "Center");
++    errorLabel.setText(errorMessage);
++    validate();
++  }
++
++  public void loginOk() {
++    writeUsername();
++  }
++
++  public void setLoggingIn() {
++    removeAll();
++    JPanel panel = new JPanel(new BorderLayout());
++    panel.add(getUpdateNews(), "Center");
++
++    JPanel southPanel = new TexturedPanel();
++    southPanel.setLayout(new BorderLayout());
++    southPanel.add(new LogoPanel(), "West");
++    southPanel.add(new TransparentPanel(), "Center");
++    JLabel label = new TransparentLabel("Logging in...                      ", 0);
++    label.setFont(new Font(null, 1, 16));
++    southPanel.add(center(label), "East");
++    southPanel.setPreferredSize(new Dimension(100, 100));
++
++    panel.add(southPanel, "South");
++
++    add(panel, "Center");
++    validate();
++  }
++
++  public void setNoNetwork() {
++    removeAll();
++    add(buildMainOfflinePanel(), "Center");
++    validate();
++  }
++
++  public void checkAutologin() {
++    if (password.getPassword().length > 0)
++      launcherFrame.login(userName.getText(), new String(password.getPassword()));
++  }
++
++  public void setOutdated()
++  {
++    outdated = true;
++  }
++}
+\ No newline at end of file
+diff --git a/src/net/minecraft/LogoPanel.java b/src/net/minecraft/LogoPanel.java
+new file mode 100644
+index 0000000..f0dd571
+--- /dev/null
++++ b/src/net/minecraft/LogoPanel.java
+@@ -0,0 +1,38 @@
++package net.minecraft;
++
++import java.awt.Dimension;
++import java.awt.Graphics;
++import java.awt.Image;
++import java.awt.image.BufferedImage;
++import java.io.IOException;
++import javax.imageio.ImageIO;
++import javax.swing.JPanel;
++
++public class LogoPanel extends JPanel
++{
++  private static final long serialVersionUID = 1L;
++  private Image bgImage;
++
++  public LogoPanel()
++  {
++    setOpaque(true);
++    try
++    {
++      BufferedImage src = ImageIO.read(LoginForm.class.getResource("logo.png"));
++      int w = src.getWidth();
++      int h = src.getHeight();
++      bgImage = src.getScaledInstance(w, h, 16);
++      setPreferredSize(new Dimension(w + 32, h + 32));
++    } catch (IOException e) {
++      e.printStackTrace();
++    }
++  }
++
++  public void update(Graphics g) {
++    paint(g);
++  }
++
++  public void paintComponent(Graphics g2) {
++    g2.drawImage(bgImage, 24, 24, null);
++  }
++}
+\ No newline at end of file
+diff --git a/src/net/minecraft/MinecraftLauncher.java b/src/net/minecraft/MinecraftLauncher.java
+new file mode 100644
+index 0000000..09d3b8f
+--- /dev/null
++++ b/src/net/minecraft/MinecraftLauncher.java
+@@ -0,0 +1,39 @@
++package net.minecraft;
++
++import java.util.ArrayList;
++
++public class MinecraftLauncher
++{
++  public static void main(String[] args)
++    throws Exception
++  {
++    float heapSizeMegs = (float)(Runtime.getRuntime().maxMemory() / 1024L / 1024L);
++
++    if (heapSizeMegs > 511.0F)
++      LauncherFrame.main(args);
++    else
++      try {
++        String pathToJar = MinecraftLauncher.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
++
++        ArrayList<String> params = new ArrayList<String>();
++
++        params.add("java");
++        params.add("-Xmx1024m");
++        params.add("-Dsun.java2d.noddraw=true");
++        params.add("-Dsun.java2d.d3d=false");
++        params.add("-Dsun.java2d.opengl=false");
++        params.add("-Dsun.java2d.pmoffscreen=false");
++
++        params.add("-classpath");
++        params.add(pathToJar);
++        params.add("net.minecraft.LauncherFrame");
++        ProcessBuilder pb = new ProcessBuilder(params);
++        Process process = pb.start();
++        if (process == null) throw new Exception("!");
++        System.exit(0);
++      } catch (Exception e) {
++        e.printStackTrace();
++        LauncherFrame.main(args);
++      }
++  }
++}
+\ No newline at end of file
+diff --git a/src/net/minecraft/OptionsPanel.java b/src/net/minecraft/OptionsPanel.java
+new file mode 100644
+index 0000000..7154f18
+--- /dev/null
++++ b/src/net/minecraft/OptionsPanel.java
+@@ -0,0 +1,116 @@
++package net.minecraft;
++
++import java.awt.BorderLayout;
++import java.awt.Color;
++import java.awt.Cursor;
++import java.awt.Font;
++import java.awt.FontMetrics;
++import java.awt.Frame;
++import java.awt.Graphics;
++import java.awt.GridLayout;
++import java.awt.event.ActionEvent;
++import java.awt.event.ActionListener;
++import java.awt.event.MouseAdapter;
++import java.awt.event.MouseEvent;
++import java.net.URL;
++import javax.swing.JButton;
++import javax.swing.JDialog;
++import javax.swing.JLabel;
++import javax.swing.JPanel;
++import javax.swing.border.EmptyBorder;
++
++public class OptionsPanel extends JDialog
++{
++  private static final long serialVersionUID = 1L;
++  
++  private LauncherFrame launcherFrame;
++
++  public OptionsPanel(Frame parent)
++  {
++    super(parent);
++
++    setModal(true);
++
++    JPanel panel = new JPanel(new BorderLayout());
++    JLabel label = new JLabel("Launcher options", 0);
++    label.setBorder(new EmptyBorder(0, 0, 16, 0));
++    label.setFont(new Font("Default", 1, 16));
++    panel.add(label, "North");
++
++    JPanel optionsPanel = new JPanel(new BorderLayout());
++    JPanel labelPanel = new JPanel(new GridLayout(0, 1));
++    JPanel fieldPanel = new JPanel(new GridLayout(0, 1));
++    optionsPanel.add(labelPanel, "West");
++    optionsPanel.add(fieldPanel, "Center");
++
++    final JButton forceButton = new JButton("Force update!");
++    forceButton.addActionListener(new ActionListener() {
++      public void actionPerformed(ActionEvent ae) {
++        GameUpdater.forceUpdate = true;
++        forceButton.setText("Will force!");
++        forceButton.setEnabled(false);
++      }
++    });
++    labelPanel.add(new JLabel("Force game update: ", 4));
++    fieldPanel.add(forceButton);
++
++    labelPanel.add(new JLabel("Game location on disk: ", 4));
++    TransparentLabel dirLink = new TransparentLabel(Util.getWorkingDirectory("/Desktop/Multi-Minecraft/" + LoginForm.mcdir + "/.minecraft").toString()) {
++      private static final long serialVersionUID = 0L;
++
++      public void paint(Graphics g) { super.paint(g);
++
++        int x = 0;
++        int y = 0;
++
++        FontMetrics fm = g.getFontMetrics();
++        int width = fm.stringWidth(getText());
++        int height = fm.getHeight();
++
++        if (getAlignmentX() == 2.0F) x = 0;
++        else if (getAlignmentX() == 0.0F) x = getBounds().width / 2 - width / 2;
++        else if (getAlignmentX() == 4.0F) x = getBounds().width - width;
++        y = getBounds().height / 2 + height / 2 - 1;
++
++        g.drawLine(x + 2, y, x + width - 2, y); }
++
++      public void update(Graphics g)
++      {
++        paint(g);
++      }
++    };
++    dirLink.setCursor(Cursor.getPredefinedCursor(12));
++    dirLink.addMouseListener(new MouseAdapter() {
++      public void mousePressed(MouseEvent arg0) {
++        try {
++          Util.openLink(new URL("file://" + Util.getWorkingDirectory(launcherFrame.loginForm.minecraftVersion.getSelectedItem().toString()).getAbsolutePath()).toURI());
++        } catch (Exception e) {
++          e.printStackTrace();
++        }
++      }
++    });
++    dirLink.setForeground(new Color(2105599));
++
++    fieldPanel.add(dirLink);
++
++    panel.add(optionsPanel, "Center");
++
++    JPanel buttonsPanel = new JPanel(new BorderLayout());
++    buttonsPanel.add(new JPanel(), "Center");
++    JButton doneButton = new JButton("Done");
++    doneButton.addActionListener(new ActionListener() {
++      public void actionPerformed(ActionEvent ae) {
++        setVisible(false);
++      }
++    });
++    buttonsPanel.add(doneButton, "East");
++    buttonsPanel.setBorder(new EmptyBorder(16, 0, 0, 0));
++
++    panel.add(buttonsPanel, "South");
++
++    add(panel);
++    panel.setBorder(new EmptyBorder(16, 24, 24, 24));
++    pack();
++    setLocationRelativeTo(parent);
++  }
++}
+\ No newline at end of file
+diff --git a/src/net/minecraft/TexturedPanel.java b/src/net/minecraft/TexturedPanel.java
+new file mode 100644
+index 0000000..61d0574
+--- /dev/null
++++ b/src/net/minecraft/TexturedPanel.java
+@@ -0,0 +1,59 @@
++package net.minecraft;
++
++import java.awt.Color;
++import java.awt.GradientPaint;
++import java.awt.Graphics;
++import java.awt.Graphics2D;
++import java.awt.Image;
++import java.awt.geom.Point2D;
++import java.io.IOException;
++import javax.imageio.ImageIO;
++import javax.swing.JPanel;
++
++public class TexturedPanel extends JPanel
++{
++  private static final long serialVersionUID = 1L;
++  private Image img;
++  private Image bgImage;
++
++  public TexturedPanel()
++  {
++    setOpaque(true);
++    try
++    {
++      bgImage = ImageIO.read(LoginForm.class.getResource("dirt.png")).getScaledInstance(32, 32, 16);
++    } catch (IOException e) {
++      e.printStackTrace();
++    }
++  }
++
++  public void update(Graphics g) {
++    paint(g);
++  }
++
++  public void paintComponent(Graphics g2) {
++    int w = getWidth() / 2 + 1;
++    int h = getHeight() / 2 + 1;
++    if ((img == null) || (img.getWidth(null) != w) || (img.getHeight(null) != h)) {
++      img = createImage(w, h);
++
++      Graphics g = img.getGraphics();
++      for (int x = 0; x <= w / 32; x++) {
++        for (int y = 0; y <= h / 32; y++)
++          g.drawImage(bgImage, x * 32, y * 32, null);
++      }
++      if ((g instanceof Graphics2D)) {
++        Graphics2D gg = (Graphics2D)g;
++        int gh = 1;
++        gg.setPaint(new GradientPaint(new Point2D.Float(0.0F, 0.0F), new Color(553648127, true), new Point2D.Float(0.0F, gh), new Color(0, true)));
++        gg.fillRect(0, 0, w, gh);
++
++        gh = h;
++        gg.setPaint(new GradientPaint(new Point2D.Float(0.0F, 0.0F), new Color(0, true), new Point2D.Float(0.0F, gh), new Color(1610612736, true)));
++        gg.fillRect(0, 0, w, gh);
++      }
++      g.dispose();
++    }
++    g2.drawImage(img, 0, 0, w * 2, h * 2, null);
++  }
++}
+\ No newline at end of file
+diff --git a/src/net/minecraft/TransparentButton.java b/src/net/minecraft/TransparentButton.java
+new file mode 100644
+index 0000000..492a9e9
+--- /dev/null
++++ b/src/net/minecraft/TransparentButton.java
+@@ -0,0 +1,17 @@
++package net.minecraft;
++
++import javax.swing.JButton;
++
++public class TransparentButton extends JButton
++{
++  private static final long serialVersionUID = 1L;
++
++  public TransparentButton(String string)
++  {
++    super(string);
++  }
++
++  public boolean isOpaque() {
++    return false;
++  }
++}
+\ No newline at end of file
+diff --git a/src/net/minecraft/TransparentCheckbox.java b/src/net/minecraft/TransparentCheckbox.java
+new file mode 100644
+index 0000000..d19b4a6
+--- /dev/null
++++ b/src/net/minecraft/TransparentCheckbox.java
+@@ -0,0 +1,20 @@
++package net.minecraft;
++
++import java.awt.Color;
++import javax.swing.JCheckBox;
++
++public class TransparentCheckbox extends JCheckBox
++{
++  private static final long serialVersionUID = 1L;
++
++  public TransparentCheckbox(String string)
++  {
++    super(string);
++    setForeground(Color.WHITE);
++    setOpaque(true);
++  }
++
++  public boolean isOpaque() {
++    return false;
++  }
++}
+\ No newline at end of file
+diff --git a/src/net/minecraft/TransparentLabel.java b/src/net/minecraft/TransparentLabel.java
+new file mode 100644
+index 0000000..8341fa0
+--- /dev/null
++++ b/src/net/minecraft/TransparentLabel.java
+@@ -0,0 +1,24 @@
++package net.minecraft;
++
++import java.awt.Color;
++import javax.swing.JLabel;
++
++public class TransparentLabel extends JLabel
++{
++  private static final long serialVersionUID = 1L;
++
++  public TransparentLabel(String string, int center)
++  {
++    super(string, center);
++    setForeground(Color.WHITE);
++  }
++
++  public TransparentLabel(String string) {
++    super(string);
++    setForeground(Color.WHITE);
++  }
++
++  public boolean isOpaque() {
++    return false;
++  }
++}
+\ No newline at end of file
+diff --git a/src/net/minecraft/TransparentPanel.java b/src/net/minecraft/TransparentPanel.java
+new file mode 100644
+index 0000000..eda60f2
+--- /dev/null
++++ b/src/net/minecraft/TransparentPanel.java
+@@ -0,0 +1,33 @@
++package net.minecraft;
++
++import java.awt.Insets;
++import java.awt.LayoutManager;
++import javax.swing.JPanel;
++
++public class TransparentPanel extends JPanel
++{
++  private static final long serialVersionUID = 1L;
++  private Insets insets;
++
++  public TransparentPanel()
++  {
++  }
++
++  public TransparentPanel(LayoutManager layout)
++  {
++    setLayout(layout);
++  }
++
++  public boolean isOpaque() {
++    return false;
++  }
++
++  public void setInsets(int a, int b, int c, int d) {
++    insets = new Insets(a, b, c, d);
++  }
++
++  public Insets getInsets() {
++    if (insets == null) return super.getInsets();
++    return insets;
++  }
++}
+\ No newline at end of file
+diff --git a/src/net/minecraft/Util.java b/src/net/minecraft/Util.java
+new file mode 100644
+index 0000000..ce112af
+--- /dev/null
++++ b/src/net/minecraft/Util.java
+@@ -0,0 +1,156 @@
++package net.minecraft;
++
++import java.io.BufferedReader;
++import java.io.DataInputStream;
++import java.io.DataOutputStream;
++import java.io.File;
++import java.io.InputStream;
++import java.io.InputStreamReader;
++import java.net.URI;
++import java.net.URL;
++import java.security.PublicKey;
++import java.security.cert.Certificate;
++import javax.net.ssl.HttpsURLConnection;
++import net.minecraft.LoginForm;
++
++public class Util
++{
++  private static File workDir = null;  
++  
++  public static File getWorkingDirectory() {
++	if (workDir == null) workDir = getWorkingDirectory("/Desktop/Multi-Minecraft/" + LoginForm.mcdir + "/.minecraft");
++	System.out.print(workDir);
++	return workDir;
++    
++  }
++
++  public static File getWorkingDirectory(String applicationName) {
++	String userHome = System.getProperty("user.home", ".");
++    File workingDirectory;
++    switch (getPlatform().ordinal()) {
++    case 1:
++    case 2:
++      workingDirectory = new File(userHome, '.' + applicationName + '/');
++      break;
++    case 3:
++      String applicationData = System.getenv("APPDATA");
++      if (applicationData != null) workingDirectory = new File(applicationData, "." + applicationName + '/'); else
++        workingDirectory = new File(userHome, '.' + applicationName + '/');
++      break;
++    case 4:
++      workingDirectory = new File(userHome, "Library/Application Support/" + applicationName);
++      break;
++    default:
++      workingDirectory = new File(userHome, applicationName + '/');
++    }
++    if ((!workingDirectory.exists()) && (!workingDirectory.mkdirs())) throw new RuntimeException("The working directory could not be created: " + workingDirectory);
++    return workingDirectory;
++  }
++
++  private static OS getPlatform()
++  {
++    String osName = System.getProperty("os.name").toLowerCase();
++    if (osName.contains("win")) {
++      return OS.windows;
++    }
++    if (osName.contains("mac")) {
++      return OS.macos;
++    }
++    if (osName.contains("solaris")) {
++      return OS.solaris;
++    }
++    if (osName.contains("sunos")) {
++      return OS.solaris;
++    }
++    if (osName.contains("linux")) {
++      return OS.linux;
++    }
++    if (osName.contains("unix")) {
++      return OS.linux;
++    }
++    return OS.unknown;
++  }
++
++  public static String excutePost(String targetURL, String urlParameters)
++  {
++    HttpsURLConnection connection = null;
++    try
++    {
++      URL url = new URL(targetURL);
++      connection = (HttpsURLConnection)url.openConnection();
++      connection.setRequestMethod("POST");
++      connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
++
++      connection.setRequestProperty("Content-Length", Integer.toString(urlParameters.getBytes().length));
++      connection.setRequestProperty("Content-Language", "en-US");
++
++      connection.setUseCaches(false);
++      connection.setDoInput(true);
++      connection.setDoOutput(true);
++
++      connection.connect();
++      Certificate[] certs = connection.getServerCertificates();
++
++      byte[] bytes = new byte[294];
++      DataInputStream dis = new DataInputStream(Util.class.getResourceAsStream("minecraft.key"));
++      dis.readFully(bytes);
++      dis.close();
++
++      Certificate c = certs[0];
++      PublicKey pk = c.getPublicKey();
++      byte[] data = pk.getEncoded();
++
++      for (int i = 0; i < data.length; i++) {
++        if (data[i] == bytes[i]) continue; throw new RuntimeException("Public key mismatch");
++      }
++
++      DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
++      wr.writeBytes(urlParameters);
++      wr.flush();
++      wr.close();
++
++      InputStream is = connection.getInputStream();
++      BufferedReader rd = new BufferedReader(new InputStreamReader(is));
++
++      StringBuffer response = new StringBuffer();
++      String line;
++      while ((line = rd.readLine()) != null)
++      {
++        response.append(line);
++        response.append('\r');
++      }
++      rd.close();
++
++      String str1 = response.toString();
++      return str1;
++    }
++    catch (Exception e)
++    {
++      e.printStackTrace();
++      return null;
++    }
++    finally
++    {
++      if (connection != null)
++        connection.disconnect();
++    }
++  }
++
++  public static boolean isEmpty(String str) {
++    return (str == null) || (str.length() == 0);
++  }
++
++  public static void openLink(URI uri) {
++    try {
++      Object o = Class.forName("java.awt.Desktop").getMethod("getDesktop", new Class[0]).invoke(null, new Object[0]);
++      o.getClass().getMethod("browse", new Class[] { URI.class }).invoke(o, new Object[] { uri });
++    } catch (Throwable e) {
++      System.out.println("Failed to open link " + uri.toString());
++    }
++  }
++
++  private static enum OS
++  {
++    linux, solaris, windows, macos, unknown;
++  }
++}
+\ No newline at end of file
+diff --git a/src/net/minecraft/dirt.png b/src/net/minecraft/dirt.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..ef5288f8745f887eeda0b188d62843e6e29c2d2e
+GIT binary patch
+literal 360
+zcmeAS@N?(olHy`uVBq!ia0vp^0wB!61|;P_|4#%`Ea{HEjtmSN`?>!lvI6;>1s;*b
+z3=DjSL74G){)!Z!pk#?_L`iUdT1k0gQ7S_~VrE{6o}X)oLYc9ish+84*PjPKMNd6l
+z978Ppb0^z!GZ_lF1V^vnNEZ~@bLi6l|DUID?s>X1rch=3{msUb^RNH?J#YJ0+wGr!
+z_2t}t`sKNL-jhiw>`&_Nf8P{1f$fNT`jJj$w*Qw|>(3pr$Xjx2&SoK7-*zS+|1De$
+z%6%c<?P3git)6UUo)ps)xL5jqc4rA|`m}Vj8=ije@<O~-76fy(C|BofW!~^J<;gsr
+zH*;1yTxa~@dtY$PtOH*pj9abiTEc`Q5(}#$7oHRF`5d$;lVyLm%)y33CabnPJV@R>
+zEux{VByyE#lupEbma>Om*uT3cU$13h{ic`e|Bd<A4|lff-sUra9%k@#^>bP0l+XkK
+DMir4A
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/net/minecraft/favicon.png b/src/net/minecraft/favicon.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..727eb7685bfe22474be9e7fddc1704552bb86b48
+GIT binary patch
+literal 1374
+zcmV-k1)=(hP)<h;3K|Lk000e1NJLTq001BW001Be1^@s6b9#F800001b5ch_0Itp)
+z=>Px#1ZP1_K>z@;j|==^1poj532;bRa{vGi!vFvd!vV){sAK>D02y>eSaefwW^{L9
+za%BKeVQFr3E>1;MAa*k@H7+$tiu~XJ00hoSL_t(oN4;15Q&eRX_CIKv$-qHvq|3U<
+z0%F2~!g66@`4WjqVfhje5=3N0K_e%e7>%@P8Y_Vj%5U=vHAB;KoYIPEnyH!kslVoF
+zpF?No?Q%Cj%bj`Vy!T_@^PJ~A=kDHR%bx9HMZZow_mB1dOfwGN+k)Xo+i>(&J)Rd4
+zYxGVd-n_IK6SLj;`1_sMbG-<o_v*3lb_mVm+5a06tKrlJw4d{1*X4Xc>zQo9@%s%p
+z{B5mZ@NSi0YButp5wRkZ!C10)Zd6P4eK$*R{O4A5T*$-dYzumC6r=ykGQkJmGzkuT
+zRe_#M!KWr-wN2(>$LAZ-eI<bKM22iW_Tw&5q3eqR>^z@~PoH$kc^+T;^KFpe?yH5^
+zf2UlC@><*39GraExo9F*>*-w7kEaVFw@L*kziSte%$Z*!l5qT|E*$#08t>h$6OasX
+z_P2ckUL$(0*@C(;A8Jl`;}WqBU*3xCr_!VXR!Iq&ghtyt9Td5F{o)@3Lg3iUc4-Ya
+zKl(!>ny2PGLY3GOe&?e{twMsHQNlbPf3jyD5zFpgi$JFZN<VZZ+P~<=9J5azcSxdv
+znM!eb(_|J}K6?%O&lSrg@E#_n?7Xg1K@~`ntzuG|w12u1YYP+L2_(1^XdK#%x`7-7
+zds2l6C1*7R*CwbGd(6$L4lATr-nze4T0;M53#qQJWF^*>tPofQFU=>Aosx*IV<90x
+zl=P*7sx*zw8IjNteD`)Oh|Y_fF!f8Xs72F}$jIX`h91-iiN334@Y;#+*vpY$<3(o0
+zYJn>O+qQ*3ajyrZk<>W?Jt+uuC!=97KSqRV&>zH!2aTf6h2Ib0!-p*bCMW6CqC~0I
+zTO5`AZvuhZbs*Lxyf9yZiVd$~lQ&6FIglaXddtD}Xg^Yf9m9nv?M;)X9jm7gNP^yA
+z^-Ml8U5Avw%gC-shPC3wIk}^eRZ{`3iS$>NySJbtv>rqC`LX0mVB4@CZAWZW4Q57F
+zv7|MJ&Q}TnR^Kv_BU0y9S=d;<CPpB=d}S=DFO;-60wlr2j5U6bw1CHD{XTSz1ZADq
+zu?oSxUf5k8q?IIrn-lgMK9O82*NQdzd_E9y6<|V5tWn!S0=g!F!rgN%%dCu=Dk>|J
+z6I^GMuacORoDi$pT)Ps8yzUqINg^B$3lUAIF%$~P^?#hN_QaBy6*HkG)pb=)3J6yM
+zO}0-65L&$^V<eP-lH)lhrL2qvzSWYzB*J47VB~coE&;a|s49%CT<_7fO0An~)TBy?
+z=T(Wg1kB2vDyTZD1|!dLW3ApyqRC8Rdag7pdHxu(1v-YN^g0pdWGFcjaQ4~n_X{aa
+z#^^lGjVkH<3ulplR;9A5%qqL7ik?%6oqcvQpsL|YfKNguFsn2BZF<2}NKIx|%9g0<
+zXi%pD|7t?*v9^Pe?pF^uy`Y<`8J(^t0ka)kyLy1n0j*4{b(&HYV$^4ao9j(goDU-&
+zyD6YA78Z%bn+8)Iy~iYAI$m2~K9JmcAMcGuOvx(Mh>WU?>5X`f*YRAa;)PzRV$-1$
+zViIva2b^**rQ$^sQ37g4=eY6M?GML72^M?Z;<%b#(DCCGxVd|=8!z=fX$_4S@5g1S
+g8$Rv*&-{A+7cw8>Cx&5FXaE2J07*qoM6N<$f;4r41poj5
+
+literal 0
+HcmV?d00001
+
+diff --git a/src/net/minecraft/logo.png b/src/net/minecraft/logo.png
+new file mode 100644
+index 0000000000000000000000000000000000000000..a3372eb8a83c950dd804748d6106f80b81d8c9ec
+GIT binary patch
+literal 16571
+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
+NASd+^QYC2|^grre!k+*D
+
+literal 0
+HcmV?d00001
+
+-- 
+1.7.5.4
+
