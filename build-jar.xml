@@ -1,4 +1,4 @@
-<project name="Minecraft Launcher" default="dist">
+<project name="Minecraft-Multi-Launcher" default="dist">
 	<property name="MyApp" value="minecraft" />
 	<!-- Create binary distribution -->
 	<target name="dist">
