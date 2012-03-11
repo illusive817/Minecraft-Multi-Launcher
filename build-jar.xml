@@ -1,0 +1,10 @@
+<project name="Minecraft Launcher" default="dist">
+	<property name="MyApp" value="minecraft" />
+	<!-- Create binary distribution -->
+	<target name="dist">
+		<delete file="${MyApp}.jar"/>
+		<jar jarfile="${MyApp}.jar"
+         basedir="bin"
+         manifest="${MyApp}.mf" />
+	</target>
+</project>
