@@ -1,15 +1,4 @@
-.project
 bin/**
-.classpath
-.settings/
-minecraft.mf
-build-jar.xml
-
-# External tool builders
-.externalToolBuilders/
-
-# Locally stored "Eclipse launch configurations"
-*.launch
-
 *.class
 *.jar
+*~
