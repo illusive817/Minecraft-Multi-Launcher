@@ -92,12 +92,13 @@ public class LoginForm extends TransparentPanel
 	    String[] list;
 	    list = folder.list();
 	    Arrays.sort(list, new AlphabeticComparator());
+	    minecraftVersion.addItem("Select Version");
 	    for (int i = 0; i < list.length; i++) {
 	    	minecraftVersion.addItem(list[i]);
 	    }
   }
   
-  public LoginForm(final LauncherFrame launcherFrame)
+public LoginForm(final LauncherFrame launcherFrame)
   {
     this.launcherFrame = launcherFrame;
     
@@ -106,11 +107,21 @@ public class LoginForm extends TransparentPanel
 
     add(buildMainLoginPanel(), "Center");
     showFiles();
+    launchButton.setEnabled(false);
     
     ActionListener actionListener = new ActionListener() {
         public void actionPerformed(ActionEvent actionEvent) {
-        	mcdir = minecraftVersion.getSelectedItem().toString();
-        	readUsername();
+        	if (minecraftVersion.getSelectedIndex() == 0){
+        		launchButton.setEnabled(false);
+        		userName.setText(null);
+        		password.setText(null);
+        		rememberBox.setSelected(false);
+        	} else{
+        		launchButton.setEnabled(true);
+        		mcdir = minecraftVersion.getSelectedItem().toString();
+        		readUsername();
+        	}
+        	
         }
       };
     
