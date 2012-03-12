@@ -23,8 +23,6 @@ public class OptionsPanel extends JDialog
 {
   private static final long serialVersionUID = 1L;
   
-  private LauncherFrame launcherFrame;
-
   public OptionsPanel(Frame parent)
   {
     super(parent);
@@ -56,7 +54,8 @@ public class OptionsPanel extends JDialog
 
     labelPanel.add(new JLabel("Game location on disk: ", 4));
     TransparentLabel dirLink = new TransparentLabel(Util.getWorkingDirectory("/Desktop/Multi-Minecraft/" + LoginForm.mcdir + "/.minecraft").toString()) {
-      private static final long serialVersionUID = 0L;
+    
+    private static final long serialVersionUID = 0L;
 
       public void paint(Graphics g) { super.paint(g);
 
@@ -83,7 +82,7 @@ public class OptionsPanel extends JDialog
     dirLink.addMouseListener(new MouseAdapter() {
       public void mousePressed(MouseEvent arg0) {
         try {
-          Util.openLink(new URL("file://" + Util.getWorkingDirectory(launcherFrame.loginForm.minecraftVersion.getSelectedItem().toString()).getAbsolutePath()).toURI());
+          Util.openLink(new URL("file://" + Util.getWorkingDirectory("/Desktop/Multi-Minecraft/" + LoginForm.mcdir + "/.minecraft").toString()).toURI());
         } catch (Exception e) {
           e.printStackTrace();
         }

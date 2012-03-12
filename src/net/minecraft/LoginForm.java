@@ -97,6 +97,7 @@ public class LoginForm extends TransparentPanel
 	    	minecraftVersion.addItem(list[i]);
 	    }
   }
+
   
 public LoginForm(final LauncherFrame launcherFrame)
   {
@@ -129,7 +130,7 @@ public LoginForm(final LauncherFrame launcherFrame)
     
     ActionListener al = new ActionListener() {
       public void actionPerformed(ActionEvent arg0) {
-        doLogin();
+    	doLogin();
       }
     };
     
