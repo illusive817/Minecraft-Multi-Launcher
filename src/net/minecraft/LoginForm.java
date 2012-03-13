@@ -238,7 +238,7 @@ public LoginForm(final LauncherFrame launcherFrame)
         public void hyperlinkUpdate(HyperlinkEvent he) {
           if (he.getEventType() == HyperlinkEvent.EventType.ACTIVATED)
             try {
-              Util.openLink(he.getURL().toURI());
+              Util.openURL(he.getURL().toString());
             } catch (Exception e) {
               e.printStackTrace();
             }
@@ -362,7 +362,7 @@ public LoginForm(final LauncherFrame launcherFrame)
         accountLink.addMouseListener(new MouseAdapter() {
           public void mousePressed(MouseEvent arg0) {
             try {
-              Util.openLink(new URL("http://www.minecraft.net/register.jsp").toURI());
+              Util.openURL(new URL("http://www.minecraft.net/register.jsp").toString());
             } catch (Exception e) {
               e.printStackTrace();
             }
@@ -417,7 +417,7 @@ public LoginForm(final LauncherFrame launcherFrame)
     accountLink.addMouseListener(new MouseAdapter() {
       public void mousePressed(MouseEvent arg0) {
         try {
-          Util.openLink(new URL("http://www.minecraft.net/download.jsp").toURI());
+          Util.openURL(new URL("http://www.minecraft.net/download.jsp").toString());
         } catch (Exception e) {
           e.printStackTrace();
         }
