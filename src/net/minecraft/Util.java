@@ -10,7 +10,11 @@ import java.net.URI;
 import java.net.URL;
 import java.security.PublicKey;
 import java.security.cert.Certificate;
+import java.util.Arrays;
+
 import javax.net.ssl.HttpsURLConnection;
+import javax.swing.JOptionPane;
+
 import net.minecraft.LoginForm;
 
 public class Util
@@ -140,14 +144,66 @@ public class Util
     return (str == null) || (str.length() == 0);
   }
 
-  public static void openLink(URI uri) {
+/*  public static void openLink(URI uri) {
     try {
       Object o = Class.forName("java.awt.Desktop").getMethod("getDesktop", new Class[0]).invoke(null, new Object[0]);
       o.getClass().getMethod("browse", new Class[] { URI.class }).invoke(o, new Object[] { uri });
     } catch (Throwable e) {
       System.out.println("Failed to open link " + uri.toString());
     }
-  }
+  }*/
+  
+  static final String[] browsers = { 
+	  "nautilus", 
+	  "dolphin", 
+	  "thunar", 
+	  "pcmanfm", 
+	  "google-chrome", 
+	  "firefox", 
+	  "opera", 
+	  "epiphany", 
+	  "konqueror", 
+	  "conkeror", 
+	  "midori", 
+	  "kazehakase", 
+	  "mozilla" 
+  };
+  static final String errMsg = "Error attempting to launch web browser";
+
+   public static void openURL(String url) {
+      try {  //attempt to use Desktop library from JDK 1.6+
+         Class<?> d = Class.forName("java.awt.Desktop");
+         d.getDeclaredMethod("browse", new Class[] {java.net.URI.class}).invoke(
+            d.getDeclaredMethod("getDesktop").invoke(null),
+            new Object[] {java.net.URI.create(url)});
+         //above code mimicks:  java.awt.Desktop.getDesktop().browse()
+         }
+      catch (Exception ignore) {  //library not available or failed
+         String osName = System.getProperty("os.name");
+         try {
+            if (osName.startsWith("Mac OS")) {
+               Class.forName("com.apple.eio.FileManager").getDeclaredMethod(
+                  "openURL", new Class[] {String.class}).invoke(null,
+                  new Object[] {url});
+               }
+            else if (osName.startsWith("Windows"))
+               Runtime.getRuntime().exec(
+                  "rundll32 url.dll,FileProtocolHandler " + url);
+            else { //assume Unix or Linux
+               String browser = null;
+               for (String b : browsers)
+                  if (browser == null && Runtime.getRuntime().exec(new String[]
+                        {"which", b}).getInputStream().read() != -1)
+                     Runtime.getRuntime().exec(new String[] {browser = b, url});
+               if (browser == null)
+                  throw new Exception(Arrays.toString(browsers));
+               }
+            }
+         catch (Exception e) {
+            JOptionPane.showMessageDialog(null, errMsg + "\n" + e.toString());
+            }
+         }
+      }
 
   private static enum OS
   {

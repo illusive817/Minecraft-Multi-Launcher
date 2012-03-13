@@ -82,7 +82,7 @@ public class OptionsPanel extends JDialog
     dirLink.addMouseListener(new MouseAdapter() {
       public void mousePressed(MouseEvent arg0) {
         try {
-          Util.openLink(new URL("file://" + Util.getWorkingDirectory("/Desktop/Multi-Minecraft/" + LoginForm.mcdir + "/.minecraft").toString()).toURI());
+          Util.openURL(new URL("file://" + Util.getWorkingDirectory("//Desktop/Multi-Minecraft/" + LoginForm.mcdir + "/.minecraft").getAbsolutePath()).toString());
         } catch (Exception e) {
           e.printStackTrace();
         }
