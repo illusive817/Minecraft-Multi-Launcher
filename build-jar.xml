@@ -1,9 +1,9 @@
 <project name="Minecraft-Multi-Launcher" default="dist">
-	<property name="MyApp" value="minecraft" />
+	<property name="MyApp" value="MCMLauncher" />
 	<!-- Create binary distribution -->
 	<target name="dist">
-		<delete file="download/${MyApp}.jar"/>
-		<jar jarfile="download/${MyApp}.jar"
+		<delete file="${MyApp}.jar"/>
+		<jar jarfile="${MyApp}.jar"
          basedir="bin"
          manifest="${MyApp}.mf" />
 	</target>
