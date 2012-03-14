@@ -19,98 +19,158 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class OptionsPanel extends JDialog
-{
-  private static final long serialVersionUID = 1L;
-  
-  public OptionsPanel(Frame parent)
-  {
-    super(parent);
+public class OptionsPanel extends JDialog {
+	private static final long serialVersionUID = 1L;
 
-    setModal(true);
+	public OptionsPanel(Frame parent) {
+		super(parent);
 
-    JPanel panel = new JPanel(new BorderLayout());
-    JLabel label = new JLabel("Launcher options", 0);
-    label.setBorder(new EmptyBorder(0, 0, 16, 0));
-    label.setFont(new Font("Default", 1, 16));
-    panel.add(label, "North");
+		setModal(true);
 
-    JPanel optionsPanel = new JPanel(new BorderLayout());
-    JPanel labelPanel = new JPanel(new GridLayout(0, 1));
-    JPanel fieldPanel = new JPanel(new GridLayout(0, 1));
-    optionsPanel.add(labelPanel, "West");
-    optionsPanel.add(fieldPanel, "Center");
+		JPanel panel = new JPanel(new BorderLayout());
+		JLabel label = new JLabel("Launcher options", 0);
+		label.setBorder(new EmptyBorder(0, 0, 16, 0));
+		label.setFont(new Font("Default", 1, 16));
+		panel.add(label, "North");
 
-    final JButton forceButton = new JButton("Force update!");
-    forceButton.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent ae) {
-        GameUpdater.forceUpdate = true;
-        forceButton.setText("Will force!");
-        forceButton.setEnabled(false);
-      }
-    });
-    labelPanel.add(new JLabel("Force game update: ", 4));
-    fieldPanel.add(forceButton);
+		JPanel optionsPanel = new JPanel(new BorderLayout());
+		JPanel labelPanel = new JPanel(new GridLayout(0, 1));
+		JPanel fieldPanel = new JPanel(new GridLayout(0, 1));
+		optionsPanel.add(labelPanel, "West");
+		optionsPanel.add(fieldPanel, "Center");
 
-    labelPanel.add(new JLabel("Game location on disk: ", 4));
-    TransparentLabel dirLink = new TransparentLabel(Util.getWorkingDirectory("/Desktop/Multi-Minecraft/" + LoginForm.mcdir + "/.minecraft").toString()) {
- 
-    private static final long serialVersionUID = 0L;
+		final JButton forceButton = new JButton("Force update!");
+		forceButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				GameUpdater.forceUpdate = true;
+				forceButton.setText("Will force!");
+				forceButton.setEnabled(false);
+			}
+		});
+		labelPanel.add(new JLabel("Force game update: ", 4));
+		fieldPanel.add(forceButton);
 
-      public void paint(Graphics g) { super.paint(g);
+		labelPanel.add(new JLabel("Game location on disk: ", 4));
+		if (LoginForm.mcdir == "Original") {
+			TransparentLabel dirLink = new TransparentLabel(
+					"No Version Selected") {
 
-        int x = 0;
-        int y = 0;
+				private static final long serialVersionUID = 0L;
 
-        FontMetrics fm = g.getFontMetrics();
-        int width = fm.stringWidth(getText());
-        int height = fm.getHeight();
+				@Override
+				public void paint(Graphics g) {
+					super.paint(g);
 
-        if (getAlignmentX() == 2.0F) x = 0;
-        else if (getAlignmentX() == 0.0F) x = getBounds().width / 2 - width / 2;
-        else if (getAlignmentX() == 4.0F) x = getBounds().width - width;
-        y = getBounds().height / 2 + height / 2 - 1;
+					int x = 0;
+					int y = 0;
 
-        g.drawLine(x + 2, y, x + width - 2, y); }
+					FontMetrics fm = g.getFontMetrics();
+					int width = fm.stringWidth(getText());
+					int height = fm.getHeight();
 
-      public void update(Graphics g)
-      {
-        paint(g);
-      }
-    };
-    
-    dirLink.setCursor(Cursor.getPredefinedCursor(12));
-    dirLink.addMouseListener(new MouseAdapter() {
-      public void mousePressed(MouseEvent arg0) {
-        try {
-          Util.openURL(new URL("file://" + Util.getWorkingDirectory("//Desktop/Multi-Minecraft/" + LoginForm.mcdir + "/.minecraft").getAbsolutePath()).toString());
-        } catch (Exception e) {
-          e.printStackTrace();
-        }
-      }
-    });
-    dirLink.setForeground(new Color(2105599));
+					if (getAlignmentX() == 2.0F)
+						x = 0;
+					else if (getAlignmentX() == 0.0F)
+						x = getBounds().width / 2 - width / 2;
+					else if (getAlignmentX() == 4.0F)
+						x = getBounds().width - width;
+					y = getBounds().height / 2 + height / 2 - 1;
 
-    fieldPanel.add(dirLink);
+					g.drawLine(x + 2, y, x + width - 2, y);
+				}
 
-    panel.add(optionsPanel, "Center");
+				@Override
+				public void update(Graphics g) {
+					paint(g);
+				}
+			};
+			dirLink.setForeground(new Color(2105599));
 
-    JPanel buttonsPanel = new JPanel(new BorderLayout());
-    buttonsPanel.add(new JPanel(), "Center");
-    JButton doneButton = new JButton("Done");
-    doneButton.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent ae) {
-        setVisible(false);
-      }
-    });
-    buttonsPanel.add(doneButton, "East");
-    buttonsPanel.setBorder(new EmptyBorder(16, 0, 0, 0));
+			fieldPanel.add(dirLink);
+		} else {
+			TransparentLabel dirLink = new TransparentLabel(Util
+					.getWorkingDirectory(
+							"/Desktop/Multi-Minecraft/" + LoginForm.mcdir
+									+ "/.minecraft").toString()) {
 
-    panel.add(buttonsPanel, "South");
+				private static final long serialVersionUID = 0L;
 
-    add(panel);
-    panel.setBorder(new EmptyBorder(16, 24, 24, 24));
-    pack();
-    setLocationRelativeTo(parent);
-  }
+				@Override
+				public void paint(Graphics g) {
+					super.paint(g);
+
+					int x = 0;
+					int y = 0;
+
+					FontMetrics fm = g.getFontMetrics();
+					int width = fm.stringWidth(getText());
+					int height = fm.getHeight();
+
+					if (getAlignmentX() == 2.0F)
+						x = 0;
+					else if (getAlignmentX() == 0.0F)
+						x = getBounds().width / 2 - width / 2;
+					else if (getAlignmentX() == 4.0F)
+						x = getBounds().width - width;
+					y = getBounds().height / 2 + height / 2 - 1;
+
+					g.drawLine(x + 2, y, x + width - 2, y);
+				}
+
+				@Override
+				public void update(Graphics g) {
+					paint(g);
+				}
+			};
+			dirLink.setCursor(Cursor.getPredefinedCursor(12));
+			dirLink.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mousePressed(MouseEvent arg0) {
+					try {
+						Util.openURL(new URL("file://"
+								+ Util.getWorkingDirectory(
+										"//Desktop/Multi-Minecraft/"
+												+ LoginForm.mcdir
+												+ "/.minecraft")
+										.getAbsolutePath()).toString());
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+			dirLink.setForeground(new Color(2105599));
+
+			fieldPanel.add(dirLink);
+		}
+		;
+
+		panel.add(optionsPanel, "Center");
+
+		JPanel buttonsPanel = new JPanel(new BorderLayout());
+		buttonsPanel.add(new JPanel(), "Center");
+		JButton doneButton = new JButton("Done");
+		doneButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				setVisible(false);
+			}
+		});
+		buttonsPanel.add(doneButton, "East");
+		buttonsPanel.setBorder(new EmptyBorder(16, 0, 0, 0));
+		JButton createNew = new JButton("Create New MC Folder");
+		createNew.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				
+			}
+		});
+		buttonsPanel.add(createNew, "Center");
+		panel.add(buttonsPanel, "South");
+
+		add(panel);
+		panel.setBorder(new EmptyBorder(16, 24, 24, 24));
+		pack();
+		setLocationRelativeTo(parent);
+	}
 }
