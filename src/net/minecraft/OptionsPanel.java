@@ -162,7 +162,7 @@ public class OptionsPanel extends JDialog {
 		createNew.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
-				
+				// New Function coming soon
 			}
 		});
 		buttonsPanel.add(createNew, "Center");
