@@ -1,3 +1,3 @@
 # MCMLauncher
 
-![MCMLauncher](https://github.com/dennis6981/Minecraft-Multi-Launcher/blob/master/MCMLauncher.png)
+![](https://github.com/dennis6981/Minecraft-Multi-Launcher/raw/master/MCMLauncher.png)
