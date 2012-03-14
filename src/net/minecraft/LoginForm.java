@@ -44,6 +44,7 @@ import javax.swing.event.HyperlinkListener;
  import java.util.regex.Pattern;*/
 import java.util.Comparator;
 import java.util.Arrays;
+import org.eclipse.wb.swing.FocusTraversalOnArray;
 
 //---------------------------------
 
@@ -312,6 +313,7 @@ public class LoginForm extends TransparentPanel {
 
 	private JPanel buildLoginPanel() {
 		TransparentPanel panel = new TransparentPanel();
+		panel.setFocusTraversalPolicyProvider(true);
 		panel.setInsets(4, 0, 4, 0);
 
 		BorderLayout layout = new BorderLayout();
@@ -415,6 +417,7 @@ public class LoginForm extends TransparentPanel {
 		errorLabel.setForeground(new Color(16728128));
 		errorLabel.setText("");
 		panel.add(errorLabel, "North");
+		panel.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{userName, password, rememberBox, minecraftVersion, optionsButton, launchButton}));
 
 		return panel;
 	}
