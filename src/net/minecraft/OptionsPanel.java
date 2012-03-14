@@ -18,6 +18,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.Rectangle;
 
 public class OptionsPanel extends JDialog {
 	private static final long serialVersionUID = 1L;
@@ -159,16 +160,18 @@ public class OptionsPanel extends JDialog {
 		buttonsPanel.add(doneButton, "East");
 		buttonsPanel.setBorder(new EmptyBorder(16, 0, 0, 0));
 		JButton createNew = new JButton("Create New MC Folder");
+		createNew.setBounds(new Rectangle(0, 0, 0, 100));
 		createNew.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
 				// New Function coming soon
 			}
 		});
-		buttonsPanel.add(createNew, "Center");
+		
 		panel.add(buttonsPanel, "South");
+		buttonsPanel.add(createNew, "Center");
 
-		add(panel);
+		getContentPane().add(panel);
 		panel.setBorder(new EmptyBorder(16, 24, 24, 24));
 		pack();
 		setLocationRelativeTo(parent);
