@@ -2,7 +2,7 @@
 
 ![](https://github.com/dennis6981/Minecraft-Multi-Launcher/raw/master/MCMLauncher.png)
 
-Download: ![MCMLauncher.jar v1.0](https://github.com/downloads/dennis6981/Minecraft-Multi-Launcher/MCMLauncher.jar)
+Download:[MCMLauncher.jar v1.0](https://github.com/downloads/dennis6981/Minecraft-Multi-Launcher/MCMLauncher.jar "MCMLauncher.jar v1.0")
 
 ## Todo
 
