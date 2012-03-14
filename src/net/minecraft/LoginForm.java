@@ -39,14 +39,14 @@ import javax.swing.border.MatteBorder;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
 
-//---------------------------------
-/*import java.io.FilenameFilter;
- import java.util.regex.Pattern;*/
+/*
+ * import java.io.FilenameFilter;
+ * import java.util.regex.Pattern;
+ */
+
 import java.util.Comparator;
 import java.util.Arrays;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
-
-//---------------------------------
 
 public class LoginForm extends TransparentPanel {
 	// private static final int PANEL_SIZE = 100;
@@ -417,7 +417,9 @@ public class LoginForm extends TransparentPanel {
 		errorLabel.setForeground(new Color(16728128));
 		errorLabel.setText("");
 		panel.add(errorLabel, "North");
-		panel.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{userName, password, rememberBox, minecraftVersion, optionsButton, launchButton}));
+		panel.setFocusTraversalPolicy(new FocusTraversalOnArray(
+				new Component[] { userName, password, rememberBox,
+						minecraftVersion, optionsButton, launchButton }));
 
 		return panel;
 	}
