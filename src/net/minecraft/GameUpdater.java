@@ -39,7 +39,6 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.jar.JarOutputStream;
 import java.util.jar.Pack200;
-import net.minecraft.LoginForm;
 
 public class GameUpdater implements Runnable {
 	public static final int STATE_INIT = 1;
@@ -203,9 +202,7 @@ public class GameUpdater implements Runnable {
 						@Override
 						public Object run() throws Exception {
 							return Util
-									.getWorkingDirectory("/Desktop/Multi-Minecraft/"
-											+ LoginForm.mcdir + "/.minecraft")
-									+ File.separator + "bin" + File.separator;
+									.getWorkingDirectory() + File.separator + "bin" + File.separator;
 						}
 					});
 			File dir = new File(path);

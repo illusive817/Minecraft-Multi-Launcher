@@ -22,15 +22,13 @@ public class Util {
 
 	public static File getWorkingDirectory() {
 		if (workDir == null)
-			workDir = getWorkingDirectory("/Desktop/Multi-Minecraft/"
-					+ LoginForm.mcdir + "/.minecraft");
-		System.out.print(workDir);
+			workDir = getWorkingDirectory("Multi-Minecraft" + File.separator + LoginForm.mcdir + File.separator + ".minecraft");
 		return workDir;
 
 	}
 
 	public static File getWorkingDirectory(String applicationName) {
-		String userHome = System.getProperty("user.home", ".");
+		String userHome = System.getProperty("user.dir", ".");
 		File workingDirectory;
 		switch (getPlatform().ordinal()) {
 		case 1:

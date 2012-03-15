@@ -49,10 +49,11 @@ import java.util.Arrays;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 
 public class LoginForm extends TransparentPanel {
-	// private static final int PANEL_SIZE = 100;
+
 	private static final long serialVersionUID = 1L;
 	private static final Color LINK_COLOR = new Color(8421631);
 	public static String mcdir = "Original";
+	public static File mcFolder;
 
 	public JTextField userName = new JTextField(20);
 	public JPasswordField password = new JPasswordField(20);
@@ -88,18 +89,16 @@ public class LoginForm extends TransparentPanel {
 	}
 
 	public void showFiles() {
-		String myPath = System.getProperty("user.home");
+		// String myPath = System.getProperty("user.home");
 
-		/*
-		 * String myPath1 = System.getProperty("user.dir");
-		 * System.out.println("Application Path: " + myPath1); File mcFolder =
-		 * new File(myPath1 + "/Multi-Minecraft"); if (!mcFolder.exists()) {
-		 * mcFolder.mkdir(); } System.out.println("Working Direktory: " +
-		 * mcFolder);
-		 */
-
-		File folder = new File(myPath + "/Desktop/Multi-Minecraft/");
-		// File folder = new File(mcFolder + File.separator);
+		String myPath = System.getProperty("user.dir");
+		mcFolder = new File(myPath + File.separator + "Multi-Minecraft");
+		if (!mcFolder.exists()) {
+			mcFolder.mkdir();
+		}
+		
+		// File folder = new File(myPath + "/Desktop/Multi-Minecraft/");
+		File folder = new File(mcFolder + File.separator);
 		String[] list;
 		list = folder.list();
 		Arrays.sort(list, new AlphabeticComparator());
@@ -191,8 +190,7 @@ public class LoginForm extends TransparentPanel {
 	private void readUsername() {
 		try {
 			File lastLogin = new File(
-					Util.getWorkingDirectory("/Desktop/Multi-Minecraft/"
-							+ mcdir + "/.minecraft"), "lastlogin");
+					Util.getWorkingDirectory(), "lastlogin");
 
 			Cipher cipher = getCipher(2, "passwordfile");
 			DataInputStream dis;
@@ -214,8 +212,7 @@ public class LoginForm extends TransparentPanel {
 	private void writeUsername() {
 		try {
 			File lastLogin = new File(
-					Util.getWorkingDirectory("/Desktop/Multi-Minecraft/"
-							+ LoginForm.mcdir + "/.minecraft"), "lastlogin");
+					Util.getWorkingDirectory(), "lastlogin");
 
 			Cipher cipher = getCipher(1, "passwordfile");
 			DataOutputStream dos;

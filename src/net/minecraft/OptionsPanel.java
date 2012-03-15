@@ -91,9 +91,7 @@ public class OptionsPanel extends JDialog {
 			fieldPanel.add(dirLink);
 		} else {
 			TransparentLabel dirLink = new TransparentLabel(Util
-					.getWorkingDirectory(
-							"/Desktop/Multi-Minecraft/" + LoginForm.mcdir
-									+ "/.minecraft").toString()) {
+					.getWorkingDirectory().toString()) {
 
 				private static final long serialVersionUID = 0L;
 
@@ -129,12 +127,7 @@ public class OptionsPanel extends JDialog {
 				@Override
 				public void mousePressed(MouseEvent arg0) {
 					try {
-						Util.openURL(new URL("file://"
-								+ Util.getWorkingDirectory(
-										"//Desktop/Multi-Minecraft/"
-												+ LoginForm.mcdir
-												+ "/.minecraft")
-										.getAbsolutePath()).toString());
+						Util.openURL(new URL("file://" + Util.getWorkingDirectory().getAbsolutePath()).toString());
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
