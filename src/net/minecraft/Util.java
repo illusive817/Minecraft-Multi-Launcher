@@ -28,7 +28,8 @@ public class Util {
 	}
 
 	public static File getWorkingDirectory(String applicationName) {
-		String userHome = System.getProperty("user.dir", ".");
+		String url = Util.class.getProtectionDomain().getCodeSource().getLocation().getPath().toString();
+		String userHome = url.replace("/MCMLauncher.jar", "");
 		File workingDirectory;
 		switch (getPlatform().ordinal()) {
 		case 1:

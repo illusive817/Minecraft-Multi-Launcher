@@ -91,20 +91,29 @@ public class LoginForm extends TransparentPanel {
 	public void showFiles() {
 		// String myPath = System.getProperty("user.home");
 
-		String myPath = System.getProperty("user.dir");
+		// String myPath = System.getProperty("user.dir");
+		String url = LauncherFrame.class.getProtectionDomain().getCodeSource()
+				.getLocation().getPath().toString();
+		String myPath = url.replace("/MCMLauncher.jar", "");
 		mcFolder = new File(myPath + File.separator + "Multi-Minecraft");
 		if (!mcFolder.exists()) {
 			mcFolder.mkdir();
+			System.out.println(mcFolder);
 		}
 		
 		// File folder = new File(myPath + "/Desktop/Multi-Minecraft/");
 		File folder = new File(mcFolder + File.separator);
 		String[] list;
 		list = folder.list();
-		Arrays.sort(list, new AlphabeticComparator());
-		minecraftVersion.addItem("Select Version");
-		for (int i = 0; i < list.length; i++) {
-			minecraftVersion.addItem(list[i]);
+		if (list == null) {
+			minecraftVersion.addItem("Select Version");
+		} else {
+
+			Arrays.sort(list, new AlphabeticComparator());
+			minecraftVersion.addItem("Select Version");
+			for (int i = 0; i < list.length; i++) {
+				minecraftVersion.addItem(list[i]);
+			}
 		}
 	}
 
@@ -189,8 +198,7 @@ public class LoginForm extends TransparentPanel {
 
 	private void readUsername() {
 		try {
-			File lastLogin = new File(
-					Util.getWorkingDirectory(), "lastlogin");
+			File lastLogin = new File(Util.getWorkingDirectory(), "lastlogin");
 
 			Cipher cipher = getCipher(2, "passwordfile");
 			DataInputStream dis;
@@ -211,8 +219,7 @@ public class LoginForm extends TransparentPanel {
 
 	private void writeUsername() {
 		try {
-			File lastLogin = new File(
-					Util.getWorkingDirectory(), "lastlogin");
+			File lastLogin = new File(Util.getWorkingDirectory(), "lastlogin");
 
 			Cipher cipher = getCipher(1, "passwordfile");
 			DataOutputStream dos;
