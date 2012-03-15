@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 //import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.security.PublicKey;
 import java.security.cert.Certificate;
@@ -28,7 +29,13 @@ public class Util {
 	}
 
 	public static File getWorkingDirectory(String applicationName) {
-		String url = Util.class.getProtectionDomain().getCodeSource().getLocation().getPath().toString();
+		String url = null;
+		try {
+			url = Util.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath().toString();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		String userHome = url.replace("/MCMLauncher.jar", "");
 		File workingDirectory;
 		switch (getPlatform().ordinal()) {

@@ -19,6 +19,7 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Random;
 import javax.crypto.Cipher;
@@ -92,15 +93,20 @@ public class LoginForm extends TransparentPanel {
 		// String myPath = System.getProperty("user.home");
 
 		// String myPath = System.getProperty("user.dir");
-		String url = LauncherFrame.class.getProtectionDomain().getCodeSource()
-				.getLocation().getPath().toString();
+		String url = null;
+		try {
+			url = LauncherFrame.class.getProtectionDomain().getCodeSource()
+					.getLocation().toURI().getPath().toString();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		String myPath = url.replace("/MCMLauncher.jar", "");
 		mcFolder = new File(myPath + File.separator + "Multi-Minecraft");
 		if (!mcFolder.exists()) {
 			mcFolder.mkdir();
-			System.out.println(mcFolder);
 		}
-		
+		System.out.println(mcFolder);
 		// File folder = new File(myPath + "/Desktop/Multi-Minecraft/");
 		File folder = new File(mcFolder + File.separator);
 		String[] list;
