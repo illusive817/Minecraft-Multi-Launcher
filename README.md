@@ -6,6 +6,6 @@
 
 ## Todo
 
- * replacing workingDirectoryPath to applicationDirectoryPath
+ * -(replacing workingDirectoryPath to applicationDirectoryPath)-
  * adding function mkdir() to Button "Create new MC Folder"
  * english learning, because my english is a little bit rusty :)
