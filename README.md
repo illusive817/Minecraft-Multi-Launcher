@@ -9,4 +9,5 @@
 ## Todo
 
  * Options Panel redesign
+ * DirWatcher for monitoring changes in the folder and add / remove folder automatically to JComboBox
  * english learning, because my english is a little bit rusty :)
