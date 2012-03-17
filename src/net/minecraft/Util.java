@@ -23,7 +23,8 @@ public class Util {
 
 	public static File getWorkingDirectory() {
 		if (workDir == null)
-			workDir = getWorkingDirectory("Multi-Minecraft" + File.separator + LoginForm.mcdir + File.separator + ".minecraft");
+			workDir = getWorkingDirectory("Multi-Minecraft" + File.separator
+					+ LoginForm.mcdir + File.separator + ".minecraft");
 		return workDir;
 
 	}
@@ -31,9 +32,9 @@ public class Util {
 	public static File getWorkingDirectory(String applicationName) {
 		String url = null;
 		try {
-			url = Util.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath().toString();
+			url = Util.class.getProtectionDomain().getCodeSource()
+					.getLocation().toURI().getPath().toString();
 		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		String userHome = url.replace("/MCMLauncher.jar", "");
@@ -41,16 +42,15 @@ public class Util {
 		switch (getPlatform().ordinal()) {
 		case 1:
 		case 2:
-			workingDirectory = new File(userHome, '.' + applicationName + '/');
+			workingDirectory = new File(userHome, applicationName + '/');
 			break;
 		case 3:
 			String applicationData = System.getenv("APPDATA");
 			if (applicationData != null)
-				workingDirectory = new File(applicationData, "."
-						+ applicationName + '/');
+				workingDirectory = new File(applicationData,
+						applicationName + '/');
 			else
-				workingDirectory = new File(userHome,
-						'.' + applicationName + '/');
+				workingDirectory = new File(userHome, applicationName + '/');
 			break;
 		case 4:
 			workingDirectory = new File(userHome,

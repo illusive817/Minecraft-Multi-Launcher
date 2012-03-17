@@ -201,8 +201,8 @@ public class GameUpdater implements Runnable {
 					.doPrivileged(new PrivilegedExceptionAction<Object>() {
 						@Override
 						public Object run() throws Exception {
-							return Util
-									.getWorkingDirectory() + File.separator + "bin" + File.separator;
+							return Util.getWorkingDirectory() + File.separator
+									+ "bin" + File.separator;
 						}
 					});
 			File dir = new File(path);

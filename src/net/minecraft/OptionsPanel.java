@@ -28,7 +28,7 @@ public class OptionsPanel extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	public static String folder = null;
-	
+
 	public OptionsPanel(Frame parent) {
 		super(parent);
 		setLocation(new Point(0, 24));
@@ -135,7 +135,9 @@ public class OptionsPanel extends JDialog {
 				@Override
 				public void mousePressed(MouseEvent arg0) {
 					try {
-						Util.openURL(new URL("file://" + Util.getWorkingDirectory().getAbsolutePath()).toString());
+						Util.openURL(new URL("file://"
+								+ Util.getWorkingDirectory().getAbsolutePath())
+								.toString());
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -144,17 +146,21 @@ public class OptionsPanel extends JDialog {
 			dirLink.setForeground(new Color(2105599));
 
 			fieldPanel.add(dirLink);
-		};
+		}
+		;
 		JButton createNew = new JButton("");
-		createNew.setIcon(new ImageIcon(OptionsPanel.class.getResource("/net/minecraft/favicon.png")));
+		createNew.setIcon(new ImageIcon(OptionsPanel.class
+				.getResource("/net/minecraft/new.png")));
 		fieldPanel.add(createNew);
 		createNew.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
-				File newFolder = new File(LoginForm.mcFolder + File.separator + textField.getText());
+				File newFolder = new File(LoginForm.mcFolder + File.separator
+						+ textField.getText());
 				if (!newFolder.exists()) {
 					newFolder.mkdir();
-					JOptionPane.showMessageDialog(null, "Folder " + textField.getText() + " created!");
+					JOptionPane.showMessageDialog(null,
+							"Folder " + textField.getText() + " created!");
 					folder = textField.getText();
 				}
 				textField.setText("");
@@ -162,8 +168,7 @@ public class OptionsPanel extends JDialog {
 			}
 		});
 		textField = new JTextField(20);
-		
-		
+
 		JLabel lblCreateFolder = new JLabel("Create Folder");
 		labelPanel.add(lblCreateFolder);
 		labelPanel.add(textField);
@@ -181,7 +186,7 @@ public class OptionsPanel extends JDialog {
 		});
 		buttonsPanel.add(doneButton, "East");
 		buttonsPanel.setBorder(new EmptyBorder(16, 0, 0, 0));
-		
+
 		panel.add(buttonsPanel, "South");
 
 		getContentPane().add(panel);

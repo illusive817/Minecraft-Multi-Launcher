@@ -48,7 +48,6 @@ import javax.swing.event.HyperlinkListener;
 import java.util.Comparator;
 import java.util.Arrays;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
-import javax.swing.border.LineBorder;
 
 public class LoginForm extends TransparentPanel {
 
@@ -148,12 +147,8 @@ public class LoginForm extends TransparentPanel {
 				doLogin();
 			}
 		};
-		userName.setBackground(Color.GRAY);
-		userName.setBorder(new LineBorder(Color.DARK_GRAY));
 
 		userName.addActionListener(al);
-		password.setBackground(Color.GRAY);
-		password.setBorder(new LineBorder(new Color(0, 0, 255)));
 		password.addActionListener(al);
 
 		retryButton.addActionListener(new ActionListener() {
@@ -178,7 +173,8 @@ public class LoginForm extends TransparentPanel {
 			public void actionPerformed(ActionEvent ae) {
 				new OptionsPanel(launcherFrame).setVisible(true);
 				minecraftVersion.addItem(OptionsPanel.folder);
-				minecraftVersion.setSelectedIndex(minecraftVersion.getItemCount() - 1);
+				minecraftVersion.setSelectedIndex(minecraftVersion
+						.getItemCount() - 1);
 			}
 		});
 	}
