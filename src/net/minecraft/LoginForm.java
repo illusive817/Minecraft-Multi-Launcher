@@ -48,6 +48,7 @@ import javax.swing.event.HyperlinkListener;
 import java.util.Comparator;
 import java.util.Arrays;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
+import javax.swing.border.LineBorder;
 
 public class LoginForm extends TransparentPanel {
 
@@ -90,15 +91,11 @@ public class LoginForm extends TransparentPanel {
 	}
 
 	public void showFiles() {
-		// String myPath = System.getProperty("user.home");
-
-		// String myPath = System.getProperty("user.dir");
 		String url = null;
 		try {
 			url = LauncherFrame.class.getProtectionDomain().getCodeSource()
 					.getLocation().toURI().getPath().toString();
 		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		String myPath = url.replace("/MCMLauncher.jar", "");
@@ -106,20 +103,13 @@ public class LoginForm extends TransparentPanel {
 		if (!mcFolder.exists()) {
 			mcFolder.mkdir();
 		}
-		System.out.println(mcFolder);
-		// File folder = new File(myPath + "/Desktop/Multi-Minecraft/");
 		File folder = new File(mcFolder + File.separator);
 		String[] list;
 		list = folder.list();
-		if (list == null) {
-			minecraftVersion.addItem("Select Version");
-		} else {
-
-			Arrays.sort(list, new AlphabeticComparator());
-			minecraftVersion.addItem("Select Version");
-			for (int i = 0; i < list.length; i++) {
-				minecraftVersion.addItem(list[i]);
-			}
+		Arrays.sort(list, new AlphabeticComparator());
+		minecraftVersion.addItem("Select Version");
+		for (int i = 0; i < list.length; i++) {
+			minecraftVersion.addItem(list[i]);
 		}
 	}
 
@@ -136,7 +126,7 @@ public class LoginForm extends TransparentPanel {
 		ActionListener actionListener = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent actionEvent) {
-				if (minecraftVersion.getSelectedIndex() == 0) {
+				if (minecraftVersion.getSelectedItem() == "Select Version") {
 					launchButton.setEnabled(false);
 					userName.setText(null);
 					password.setText(null);
@@ -158,8 +148,12 @@ public class LoginForm extends TransparentPanel {
 				doLogin();
 			}
 		};
+		userName.setBackground(Color.GRAY);
+		userName.setBorder(new LineBorder(Color.DARK_GRAY));
 
 		userName.addActionListener(al);
+		password.setBackground(Color.GRAY);
+		password.setBorder(new LineBorder(new Color(0, 0, 255)));
 		password.addActionListener(al);
 
 		retryButton.addActionListener(new ActionListener() {
@@ -183,6 +177,8 @@ public class LoginForm extends TransparentPanel {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
 				new OptionsPanel(launcherFrame).setVisible(true);
+				minecraftVersion.addItem(OptionsPanel.folder);
+				minecraftVersion.setSelectedIndex(minecraftVersion.getItemCount() - 1);
 			}
 		});
 	}

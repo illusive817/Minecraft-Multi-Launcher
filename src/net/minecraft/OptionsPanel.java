@@ -12,19 +12,26 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.net.URL;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.Rectangle;
+import java.awt.Point;
+import javax.swing.JTextField;
+import javax.swing.ImageIcon;
 
 public class OptionsPanel extends JDialog {
 	private static final long serialVersionUID = 1L;
-
+	private JTextField textField;
+	public static String folder = null;
+	
 	public OptionsPanel(Frame parent) {
 		super(parent);
+		setLocation(new Point(0, 24));
 
 		setModal(true);
 
@@ -41,6 +48,7 @@ public class OptionsPanel extends JDialog {
 		optionsPanel.add(fieldPanel, "Center");
 
 		final JButton forceButton = new JButton("Force update!");
+		forceButton.setDefaultCapable(false);
 		forceButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
@@ -51,8 +59,8 @@ public class OptionsPanel extends JDialog {
 		});
 		labelPanel.add(new JLabel("Force game update: ", 4));
 		fieldPanel.add(forceButton);
-
 		labelPanel.add(new JLabel("Game location on disk: ", 4));
+
 		if (LoginForm.mcdir == "Original") {
 			TransparentLabel dirLink = new TransparentLabel(
 					"No Version Selected") {
@@ -136,8 +144,29 @@ public class OptionsPanel extends JDialog {
 			dirLink.setForeground(new Color(2105599));
 
 			fieldPanel.add(dirLink);
-		}
-		;
+		};
+		JButton createNew = new JButton("");
+		createNew.setIcon(new ImageIcon(OptionsPanel.class.getResource("/net/minecraft/favicon.png")));
+		fieldPanel.add(createNew);
+		createNew.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				File newFolder = new File(LoginForm.mcFolder + File.separator + textField.getText());
+				if (!newFolder.exists()) {
+					newFolder.mkdir();
+					JOptionPane.showMessageDialog(null, "Folder " + textField.getText() + " created!");
+					folder = textField.getText();
+				}
+				textField.setText("");
+				return;
+			}
+		});
+		textField = new JTextField(20);
+		
+		
+		JLabel lblCreateFolder = new JLabel("Create Folder");
+		labelPanel.add(lblCreateFolder);
+		labelPanel.add(textField);
 
 		panel.add(optionsPanel, "Center");
 
@@ -152,17 +181,8 @@ public class OptionsPanel extends JDialog {
 		});
 		buttonsPanel.add(doneButton, "East");
 		buttonsPanel.setBorder(new EmptyBorder(16, 0, 0, 0));
-		JButton createNew = new JButton("Create New MC Folder");
-		createNew.setBounds(new Rectangle(0, 0, 0, 100));
-		createNew.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent ae) {
-				// New Function coming soon
-			}
-		});
 		
 		panel.add(buttonsPanel, "South");
-		buttonsPanel.add(createNew, "Center");
 
 		getContentPane().add(panel);
 		panel.setBorder(new EmptyBorder(16, 24, 24, 24));
