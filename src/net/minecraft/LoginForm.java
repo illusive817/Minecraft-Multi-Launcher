@@ -89,19 +89,40 @@ public class LoginForm extends TransparentPanel {
 		}
 	}
 
+	public String getJarFolder() {
+		String name = this.getClass().getName().replace('.', '/');
+		String s = this.getClass().getResource("/" + name + ".class")
+				.toString();
+		s = s.replace('/', File.separatorChar);
+		s = s.substring(0, s.indexOf(".jar") + 4);
+		s = s.substring(s.lastIndexOf(':') + 1);
+		return s.substring(0, s.lastIndexOf(File.separatorChar) + 1);
+	}
+
 	public void showFiles() {
+
 		String url = null;
 		try {
 			url = LauncherFrame.class.getProtectionDomain().getCodeSource()
-					.getLocation().toURI().getPath().toString();
+					.getLocation().toURI().getPath();
 		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
-		String myPath = url.replace("/MCMLauncher.jar", "");
+
+		String inEclipse = System.getProperty("ineclipse");
+		String myPath = null;
+		if ((inEclipse == null) || (!inEclipse.equals("true"))) {
+			myPath = getJarFolder();
+		} else {
+			myPath = url.replace("/bin", "");
+		}
+
 		mcFolder = new File(myPath + File.separator + "Multi-Minecraft");
 		if (!mcFolder.exists()) {
 			mcFolder.mkdir();
+
 		}
+		System.out.println(mcFolder);
 		File folder = new File(mcFolder + File.separator);
 		String[] list;
 		list = folder.list();
