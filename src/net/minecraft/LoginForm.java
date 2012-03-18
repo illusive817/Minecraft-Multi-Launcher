@@ -19,8 +19,10 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.net.URLDecoder;
 import java.util.Random;
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
@@ -90,13 +92,20 @@ public class LoginForm extends TransparentPanel {
 	}
 
 	public String getJarFolder() {
-		String name = this.getClass().getName().replace('.', '/');
-		String s = this.getClass().getResource("/" + name + ".class")
-				.toString();
-		s = s.replace('/', File.separatorChar);
-		s = s.substring(0, s.indexOf(".jar") + 4);
-		s = s.substring(s.lastIndexOf(':') + 1);
-		return s.substring(0, s.lastIndexOf(File.separatorChar) + 1);
+		URL url = this.getClass().getProtectionDomain().getCodeSource().getLocation();
+		String p = null;
+		try {
+			p = URLDecoder.decode(url.getFile(), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+
+		p = p.replace('/', File.separatorChar);
+		p = p.substring(0, p.indexOf(".jar") + 4);
+
+		return p.substring(0, p.lastIndexOf(File.separatorChar) + 1);
 	}
 
 	public void showFiles() {
@@ -113,6 +122,7 @@ public class LoginForm extends TransparentPanel {
 		String myPath = null;
 		if ((inEclipse == null) || (!inEclipse.equals("true"))) {
 			myPath = getJarFolder();
+			System.out.println(myPath);
 		} else {
 			myPath = url.replace("/bin", "");
 		}
@@ -122,8 +132,7 @@ public class LoginForm extends TransparentPanel {
 			mcFolder.mkdir();
 
 		}
-		System.out.println(mcFolder);
-		File folder = new File(mcFolder + File.separator);
+		File folder = new File(mcFolder.toString());
 		String[] list;
 		list = folder.list();
 		Arrays.sort(list, new AlphabeticComparator());
@@ -131,6 +140,7 @@ public class LoginForm extends TransparentPanel {
 		for (int i = 0; i < list.length; i++) {
 			minecraftVersion.addItem(list[i]);
 		}
+		
 	}
 
 	public LoginForm(final LauncherFrame launcherFrame) {

@@ -29,6 +29,7 @@ public class Util {
 
 	public static File getWorkingDirectory(String applicationName) {
 		String userHome = LoginForm.mcFolder.toString();
+		System.out.println(userHome);
 		File workingDirectory;
 		switch (getPlatform().ordinal()) {
 		case 1:
