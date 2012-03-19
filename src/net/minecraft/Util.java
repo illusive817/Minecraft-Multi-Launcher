@@ -149,15 +149,6 @@ public class Util {
 		return (str == null) || (str.length() == 0);
 	}
 
-	/*
-	 * public static void openLink(URI uri) { try { Object o =
-	 * Class.forName("java.awt.Desktop").getMethod("getDesktop", new
-	 * Class[0]).invoke(null, new Object[0]); o.getClass().getMethod("browse",
-	 * new Class[] { URI.class }).invoke(o, new Object[] { uri }); } catch
-	 * (Throwable e) { System.out.println("Failed to open link " +
-	 * uri.toString()); } }
-	 */
-
 	static final String[] browsers = { "nautilus", "dolphin", "thunar",
 			"pcmanfm", "google-chrome", "firefox", "opera", "epiphany",
 			"konqueror", "conkeror", "midori", "kazehakase", "mozilla" };
@@ -169,7 +160,6 @@ public class Util {
 			d.getDeclaredMethod("browse", new Class[] { java.net.URI.class })
 					.invoke(d.getDeclaredMethod("getDesktop").invoke(null),
 							new Object[] { java.net.URI.create(url) });
-			// above code mimicks: java.awt.Desktop.getDesktop().browse()
 		} catch (Exception ignore) { // library not available or failed
 			String osName = System.getProperty("os.name");
 			try {

@@ -19,10 +19,8 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.net.URLDecoder;
 import java.util.Random;
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
@@ -41,11 +39,6 @@ import javax.swing.JComboBox;
 import javax.swing.border.MatteBorder;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
-
-/*
- * import java.io.FilenameFilter;
- * import java.util.regex.Pattern;
- */
 
 import java.util.Comparator;
 import java.util.Arrays;
@@ -73,15 +66,6 @@ public class LoginForm extends TransparentPanel {
 	private boolean outdated = false;
 	private JScrollPane scrollPane;
 
-	/*
-	 * class DirFilter implements FilenameFilter { private Pattern pattern;
-	 * 
-	 * public DirFilter(String regex) { pattern = Pattern.compile(regex); }
-	 * 
-	 * public boolean accept(File dir, String name) { return pattern.matcher(new
-	 * File(name).getName()).matches(); } }
-	 */
-
 	class AlphabeticComparator implements Comparator<Object> {
 		@Override
 		public int compare(Object o1, Object o2) {
@@ -90,23 +74,28 @@ public class LoginForm extends TransparentPanel {
 			return s1.toLowerCase().compareTo(s2.toLowerCase());
 		}
 	}
+	
+	  private String getJarFolder() {
+		    // get name and path
+		    String name = getClass().getName().replace('.', '/');
+		    name = getClass().getResource("/" + name + ".class").toString();
+		    // remove junk
+		    name = name.substring(0, name.indexOf(".jar"));
+		    if (System.getProperty("os.name").toLowerCase().contains("win")) {
+		    	name = name.substring(name.lastIndexOf(':')-1, name.lastIndexOf('/')+1).replace('%', ' ');
+		    } else {
+		    	name = name.substring(name.lastIndexOf(':')+1, name.lastIndexOf('/')+1).replace('%', ' ');
+		    }
+		    // remove escape characters
+		    String s = "";
+		    for (int k=0; k<name.length(); k++) {
+		      s += name.charAt(k);
+		      if (name.charAt(k) == ' ') k += 2;
+		    }
+		    // replace '/' with system separator char
+		    return s.replace('/', File.separatorChar);
+		  }
 
-	public String getJarFolder() {
-		URL url = this.getClass().getProtectionDomain().getCodeSource().getLocation();
-		String p = null;
-		try {
-			p = URLDecoder.decode(url.getFile(), "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-
-		p = p.replace('/', File.separatorChar);
-		p = p.substring(0, p.indexOf(".jar") + 4);
-
-		return p.substring(0, p.lastIndexOf(File.separatorChar) + 1);
-	}
 
 	public void showFiles() {
 
@@ -122,7 +111,6 @@ public class LoginForm extends TransparentPanel {
 		String myPath = null;
 		if ((inEclipse == null) || (!inEclipse.equals("true"))) {
 			myPath = getJarFolder();
-			System.out.println(myPath);
 		} else {
 			myPath = url.replace("/bin", "");
 		}
