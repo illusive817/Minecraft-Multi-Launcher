@@ -4,7 +4,7 @@
 
 ![](https://github.com/dennis6981/Minecraft-Multi-Launcher/raw/master/OptionsPanel.png)
 
-### Download: [MCMLauncher.jar v1.1](https://github.com/downloads/dennis6981/Minecraft-Multi-Launcher/MCMLauncher.jar "MCMLauncher.jar v1.1")
+### Download: [MCMLauncher.jar v1.2](https://github.com/downloads/dennis6981/Minecraft-Multi-Launcher/MCMLauncher.jar "MCMLauncher.jar v1.2")
 
 ## Todo
 
