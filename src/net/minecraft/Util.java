@@ -17,20 +17,20 @@ import javax.swing.JOptionPane;
 import net.minecraft.LoginForm;
 
 public class Util {
-	private static File workDir = null;
+/*	private File workDir = null;
 
-	public static File getWorkingDirectory() {
+	public File getWorkingDirectory() {
 		if (workDir == null)
 			workDir = getWorkingDirectory(File.separator + LoginForm.mcdir
 					+ File.separator + ".minecraft");
 		return workDir;
 
-	}
+	}*/
 
-	public static File getWorkingDirectory(String applicationName) {
+	public File getWorkingDirectory() {
 		String userHome = LoginForm.mcFolder.toString();
-		System.out.println(userHome);
 		File workingDirectory;
+		String applicationName = File.separator + LoginForm.mcdir + File.separator + ".minecraft";
 		switch (getPlatform().ordinal()) {
 		case 1:
 		case 2:

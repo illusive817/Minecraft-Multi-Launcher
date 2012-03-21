@@ -84,6 +84,7 @@ public class GameUpdater implements Runnable {
 	private String mainGameUrl;
 	public boolean pauseAskUpdate;
 	public boolean shouldUpdate;
+	private Util util = new Util();
 
 	public GameUpdater(String latestVersion, String mainGameUrl) {
 		this.latestVersion = latestVersion;
@@ -201,7 +202,7 @@ public class GameUpdater implements Runnable {
 					.doPrivileged(new PrivilegedExceptionAction<Object>() {
 						@Override
 						public Object run() throws Exception {
-							return Util.getWorkingDirectory() + File.separator
+							return util.getWorkingDirectory() + File.separator
 									+ "bin" + File.separator;
 						}
 					});
@@ -804,7 +805,7 @@ public class GameUpdater implements Runnable {
 					.doPrivileged(new PrivilegedExceptionAction<Object>() {
 						@Override
 						public Object run() throws Exception {
-							return Util.getWorkingDirectory() + File.separator
+							return util.getWorkingDirectory() + File.separator
 									+ "bin" + File.separator;
 						}
 					});
@@ -826,5 +827,10 @@ public class GameUpdater implements Runnable {
 			return false;
 		}
 		return false;
+	}
+
+	protected Object getWorkingDirectory() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -28,6 +28,7 @@ public class OptionsPanel extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	public static String folder = null;
+	private Util util = new Util(); 
 
 	public OptionsPanel(Frame parent) {
 		super(parent);
@@ -98,7 +99,7 @@ public class OptionsPanel extends JDialog {
 
 			fieldPanel.add(dirLink);
 		} else {
-			TransparentLabel dirLink = new TransparentLabel(Util
+			TransparentLabel dirLink = new TransparentLabel(util
 					.getWorkingDirectory().toString()) {
 
 				private static final long serialVersionUID = 0L;
@@ -136,7 +137,7 @@ public class OptionsPanel extends JDialog {
 				public void mousePressed(MouseEvent arg0) {
 					try {
 						Util.openURL(new URL("file://"
-								+ Util.getWorkingDirectory().getAbsolutePath())
+								+ util.getWorkingDirectory().getAbsolutePath())
 								.toString());
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -155,16 +156,13 @@ public class OptionsPanel extends JDialog {
 		createNew.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
-				File newFolder = new File(LoginForm.mcFolder + File.separator
-						+ textField.getText());
+				File newFolder = new File(LoginForm.mcFolder + File.separator  + textField.getText());
 				if (!newFolder.exists()) {
 					newFolder.mkdir();
-					JOptionPane.showMessageDialog(null,
-							"Folder " + textField.getText() + " created!");
+					JOptionPane.showMessageDialog(null, "Folder " + textField.getText() + " created!");
 					folder = textField.getText();
 				}
 				textField.setText("");
-				return;
 			}
 		});
 		textField = new JTextField(20);

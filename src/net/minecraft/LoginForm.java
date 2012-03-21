@@ -18,6 +18,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -65,6 +66,7 @@ public class LoginForm extends TransparentPanel {
 	private LauncherFrame launcherFrame;
 	private boolean outdated = false;
 	private JScrollPane scrollPane;
+	private Util util = new Util();
 
 	class AlphabeticComparator implements Comparator<Object> {
 		@Override
@@ -191,9 +193,17 @@ public class LoginForm extends TransparentPanel {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
 				new OptionsPanel(launcherFrame).setVisible(true);
-				minecraftVersion.addItem(OptionsPanel.folder);
-				minecraftVersion.setSelectedIndex(minecraftVersion
-						.getItemCount() - 1);
+				String newFolder = OptionsPanel.folder;
+				if (newFolder != null) {
+					minecraftVersion.addItem(newFolder);
+					minecraftVersion.setSelectedIndex(minecraftVersion.getItemCount() - 1);
+					userName.setText(null);
+					password.setText(null);
+					rememberBox.setSelected(false);
+				} else {
+					minecraftVersion.setSelectedIndex(minecraftVersion.getSelectedIndex());
+				}
+
 			}
 		});
 	}
@@ -215,7 +225,7 @@ public class LoginForm extends TransparentPanel {
 
 	private void readUsername() {
 		try {
-			File lastLogin = new File(Util.getWorkingDirectory(), "lastlogin");
+			File lastLogin = new File(util.getWorkingDirectory(), "lastlogin");
 
 			Cipher cipher = getCipher(2, "passwordfile");
 			DataInputStream dis;
@@ -229,6 +239,8 @@ public class LoginForm extends TransparentPanel {
 			password.setText(dis.readUTF());
 			rememberBox.setSelected(password.getPassword().length > 0);
 			dis.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("File 'lastlogin' not found!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -236,7 +248,7 @@ public class LoginForm extends TransparentPanel {
 
 	private void writeUsername() {
 		try {
-			File lastLogin = new File(Util.getWorkingDirectory(), "lastlogin");
+			File lastLogin = new File(util.getWorkingDirectory(), "lastlogin");
 
 			Cipher cipher = getCipher(1, "passwordfile");
 			DataOutputStream dos;
